@@ -32,4 +32,34 @@ return apply_filters( 'ninja-forms-dashboard-promotions', array(
     'script' => "",
   ),
 
+
+  /*
+  |--------------------------------------------------------------------------
+  | Personal 20
+  |--------------------------------------------------------------------------
+  |
+  */
+
+  'personal-20' => array(
+    'id' => 'personal-20',
+    'content' => 
+    '<a href="?utm_campaign=ninja-forms-plugin&utm_source=dashboard&utm_medium=banner-ad&utm_content=personal-20" target="_blank" class="nf-remove-promo-styling"><img src="' . Ninja_forms::$url . 'assets/img/promotions/dashboard/personal-20.svg"></a>',
+    'script' => "",
+  ),
+
+  
+  /*
+  |--------------------------------------------------------------------------
+  | Personal 50
+  |--------------------------------------------------------------------------
+  |
+  */
+
+  'personal-50' => array(
+    'id' => 'personal-50',
+    'content' => 
+    '<a href="?utm_campaign=ninja-forms-plugin&utm_source=dashboard&utm_medium=banner-ad&utm_content=personal-50" target="_blank" class="nf-remove-promo-styling"><img src="' . Ninja_forms::$url . 'assets/img/promotions/dashboard/personal-50.svg"></a>',
+    'script' => "",
+  ),
+
 ));
