@@ -2,9 +2,9 @@
 [Contributors](https://github.com/wpninjas/ninja-forms/graphs/contributors)
 
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
-Requires at least: 4.8
-Tested up to: 5.0
-Stable tag: 3.4.4
+Requires at least: 4.9
+Tested up to: 5.1
+Stable tag: 3.4.5
 License: GPLv2 or later
 
 With a simple drag and drop interface you can create contact forms, email subscription forms, order forms, payment forms, and any other type of form for your WordPress site.
