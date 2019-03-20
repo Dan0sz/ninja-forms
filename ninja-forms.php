@@ -450,9 +450,11 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
             add_action( 'plugins_loaded', array( self::$instance, 'plugins_loaded' ) );
 
             add_action( 'ninja_forms_available_actions', array( self::$instance, 'scrub_available_actions' ) );
-
+            
             add_action( 'init', array( self::$instance, 'init' ), 5 );
             add_action( 'admin_init', array( self::$instance, 'admin_init' ), 5 );
+
+            add_action( 'nf_weekly_promotion_update', array( self::$instance, 'nf_run_promotion_manager' ) );
 
             // Checks php version and..
             if( PHP_VERSION < 5.6 ) {
@@ -483,7 +485,13 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
 			// Remove already completed updates from our filtered list of required updates.
             add_filter( 'ninja_forms_required_updates', array( $this, 'remove_completed_updates' ), 99 );
             add_filter( 'ninja_forms_required_updates', array( $this, 'remove_bad_updates' ), 99 );
-            
+
+           
+
+            if ( ! wp_next_scheduled( 'nf_weekly_promotion_update' ) ) {
+                wp_schedule_event( current_time( 'timestamp' ), 'nf-weekly', 'nf_weekly_promotion_update' );
+            }
+
 
 			// Get our list of required updates.
             $required_updates = Ninja_Forms()->config( 'RequiredUpdates' );
@@ -602,6 +610,12 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                 unset( $actions[ $key ] );
             }
             return $actions;
+        }
+
+        public function nf_run_promotion_manager()
+        {
+            $promotion_manager = new NF_PromotionManager();
+            update_option( 'nf_active_promotions', $promotion_manager->get_promotions(), false );
         }
 
         public function admin_notices()

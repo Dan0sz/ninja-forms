@@ -166,8 +166,8 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
             $current_user = wp_get_current_user();
             wp_localize_script( 'nf-dashboard', 'nfi18n', Ninja_Forms::config( 'i18nDashboard' ) );
 
-
-            wp_localize_script( 'nf-dashboard', 'nfPromotions', array_values( Ninja_Forms::config( 'DashboardPromotions' ) ) );
+            $promotions = get_option( 'nf_active_promotions' );
+            wp_localize_script( 'nf-dashboard', 'nfPromotions', array_values( $promotions[ 'dashboard' ] ) );
             
             
             wp_localize_script( 'nf-dashboard', 'nfAdmin', array(

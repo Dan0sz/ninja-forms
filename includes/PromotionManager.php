@@ -18,6 +18,11 @@ class NF_PromotionManager
         $this->sort_active_promotions_by_locations();
     }
 
+    public function get_promotions()
+    {
+        return $this->promotions;
+    }
+
     /**
      * Set our promtions array to our promotions property. 
      */
