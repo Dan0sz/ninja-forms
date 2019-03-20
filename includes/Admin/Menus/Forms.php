@@ -82,6 +82,8 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
             }
         }
 
+
+
         /* DISABLE OLD FORMS TABLE IN FAVOR OF NEW DASHBOARD */
 //        $this->table = new NF_Admin_AllFormsTable();
     }
@@ -163,7 +165,11 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
             $current_user = wp_get_current_user();
             wp_localize_script( 'nf-dashboard', 'nfi18n', Ninja_Forms::config( 'i18nDashboard' ) );
+
+
             wp_localize_script( 'nf-dashboard', 'nfPromotions', array_values( Ninja_Forms::config( 'DashboardPromotions' ) ) );
+            
+            
             wp_localize_script( 'nf-dashboard', 'nfAdmin', array(
                 'ajaxNonce'         => wp_create_nonce( 'ninja_forms_dashboard_nonce' ),
                 'batchNonce'        => wp_create_nonce( 'ninja_forms_batch_nonce' ),
