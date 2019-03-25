@@ -1,11 +1,12 @@
-define( ['views/app/itemControls'], function( itemControlsView ) {
+define( ['views/app/itemControls', 'views/fields/realisticField'], function( itemControlsView, realisticFieldView ) {
 	var view = Marionette.LayoutView.extend({
 		tagName: 'div',
 		template: '#tmpl-nf-main-content-field',
 		doingShortcut: false,
 
 		regions: {
-			itemControls: '.nf-item-controls'
+			itemControls: '.nf-item-controls',
+			realisticField: '.nf-realistic-field'
 		},
 
 		initialize: function() {
@@ -29,6 +30,8 @@ define( ['views/app/itemControls'], function( itemControlsView ) {
 
 			this.itemControls.show( new itemControlsView( { model: this.model } ) );
 			jQuery( this.el ).disableSelection();
+
+			this.realisticField.show( new realisticFieldView( { model: this.model } ) );
 
 			if ( nfRadio.channel( 'app' ).request( 'is:mobile' ) ) {
 				jQuery( this.el ).on( 'taphold', function( e, touch ) {

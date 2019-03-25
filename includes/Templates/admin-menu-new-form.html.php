@@ -159,8 +159,10 @@
 </script>
 
 <script id="tmpl-nf-main-content-field" type="text/template">
-    <div id="{{{ data.getFieldID() }}}" class="{{{ data.renderClasses() }}}" data-id="{{{ data.id }}}">{{{ data.renderIcon() }}}<span class="nf-field-label">{{{ _.escape( data.label ) }}} {{{ data.renderRequired() }}}</span>
+    <div id="{{{ data.getFieldID() }}}" class="{{{ data.renderClasses() }}}" data-id="{{{ data.id }}}">
+        <span class="nf-field-label">{{{ _.escape( data.label ) }}} {{{ data.renderRequired() }}}</span>
         <div class="nf-item-controls"></div>
+        <div class="nf-realistic-field"></div>
     </div>
 </script>
 
