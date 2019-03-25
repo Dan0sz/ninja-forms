@@ -103,6 +103,10 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
             Ninja_Forms::template( 'admin-menu-new-form.html.php' );
             Ninja_Forms::template( 'fields-input.html' );
+            Ninja_Forms::template( 'fields-textbox.html' );
+            Ninja_Forms::template( 'fields-email.html' );
+            Ninja_Forms::template( 'fields-textarea.html' );
+            Ninja_Forms::template( 'fields-submit.html' );
 
             $this->_enqueue_the_things( $form_id );
 

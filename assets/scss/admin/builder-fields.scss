@@ -1,12 +1,50 @@
+.nf-realistic-field input[type="text"],
+.nf-realistic-field input[type="email"] {
+    width: 100%;
+    max-width: 100%;
+    background: #f9f9f9;
+    height: 50px;
+    padding: 12px;
+    border: 0;
+    color: #787878;
+}
+
+.nf-realistic-field button,
+.nf-realistic-field input[type="button"],
+.nf-realistic-field input[type="submit"] {
+    width: auto;
+    height: 50px;
+    padding: 12px;
+    border-radius: 2px;
+    background: #333;
+    border: 0;
+    color: #f7f7f7;
+}
+
+
 .nf-field-wrap {
     background: #fff;
-    border: 1px solid #ccc;
+    border: 1px solid transparent;
     border-radius: 4px;
     color: #888;
     cursor: pointer;
     margin-bottom: 20px;
     padding: 15px 20px;
     position: relative;
+    transition: border-color .25s;
+
+    &:hover {
+        border-color: #ccc;
+    }
+
+    & .nf-item-controls {
+        display: none;
+    }
+
+    &:hover .nf-item-controls {
+        display: block;
+    }
+
     &.active {
         //background: #fafafa;
         border: 2px solid #84CC1E;

@@ -12,11 +12,18 @@ define( [], function() {
 		template: '#tmpl-nf-field-input',
 
 		initialize: function() {
-			// ...
+			this.template = '#tmpl-nf-field-' + this.model.get('type');
+			
+			console.log( '<REALISTIC FIELD VIEW INIT>' );
+			console.log( this );
+			console.log( this.model );
+			console.log( this.model.get('type') );
+			console.log( this.template );
+			console.log( '</REALISTIC FIELD VIEW INIT>' );
 		},
 
 		onRender: function() {
-            console.log(this.model);
+			// ...
 		},
 
 		events: {
@@ -42,8 +49,14 @@ define( [], function() {
                     return 'disabled="disabled"';
                 },
                 maybeRequired: function() {
-
-                },
+					// ...
+				},
+				maybeInputLimit: function() {
+					// ...
+				},
+				maybeDisableAutocomplete: function() {
+					// ..
+				}
             }
         }
 
