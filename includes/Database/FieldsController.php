@@ -226,12 +226,13 @@ final class NF_Database_FieldsController
         ");
         $field_meta = array();
         foreach( $results as $meta ){
+            $meta_value = '';
             if( ! isset( $field_meta[ $meta->parent_id ] ) ) $field_meta[ $meta->parent_id ] = array();
             $field_meta[ $meta->parent_id ][ $meta->key ] = $meta->value;
-            if ( is_null( $meta->meta_value ) ) {
-                $meta_value = '';
-            } else {
-                $meta_value = $meta->meta_value;
+            if ( property_exists( $meta, 'meta_value' ) ) {
+                if ( ! is_null( $meta->meta_value ) ) {
+                    $meta_value = $meta->meta_value;
+                }
             }
             $field_meta[ $meta->parent_id ]['meta_key'][ $meta->key ] = $meta_value;
         }
