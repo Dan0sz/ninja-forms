@@ -486,8 +486,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
             add_filter( 'ninja_forms_required_updates', array( $this, 'remove_completed_updates' ), 99 );
             add_filter( 'ninja_forms_required_updates', array( $this, 'remove_bad_updates' ), 99 );
 
-           
-
+           // Sets up a weekly cron to run the promotion manager. 
             if ( ! wp_next_scheduled( 'nf_weekly_promotion_update' ) ) {
                 wp_schedule_event( current_time( 'timestamp' ), 'nf-weekly', 'nf_weekly_promotion_update' );
             }
@@ -612,6 +611,12 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
             return $actions;
         }
 
+        /**
+         * Call back function for the promo manager cron. 
+         * Grabs a fresh copy of the promotions and stores them in an option. 
+         * 
+         * @return void
+         */
         public function nf_run_promotion_manager()
         {
             $promotion_manager = new NF_PromotionManager();
