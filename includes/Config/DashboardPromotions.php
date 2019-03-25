@@ -30,7 +30,7 @@ return apply_filters( 'ninja-forms-promotions', array(
     'id'        => 'personal-20',
     'location'  => 'dashboard',
     'type'      => 'personal',
-    'content'   => '<a href="https://ninjaforms.com/personal-membership/?utm_campaign=ninja-forms-plugin&utm_source=dashboard&utm_medium=banner-ad&utm_content=personal-20" target="_blank" class="nf-remove-promo-styling"><img src="' . Ninja_forms::$url . 'assets/img/promotions/dashboard/personal-20.svg"></a>',
+    'content'   => '<a href="https://ninjaforms.com/personal-membership/?utm_campaign=ninja-forms-plugin&utm_source=dashboard&utm_medium=banner-ad&utm_content=personal-20" target="_blank" class="nf-remove-promo-styling"><img src="' . Ninja_forms::$url . 'assets/img/promotions/dashboard/personal-20.png"></a>',
     'script'    => "",
   ),
 
@@ -46,7 +46,7 @@ return apply_filters( 'ninja-forms-promotions', array(
     'id'        => 'personal-50',
     'location'  => 'dashboard',
     'type'      => 'personal',
-    'content'   => '<a href="https://ninjaforms.com/personal-membership/?utm_campaign=ninja-forms-plugin&utm_source=dashboard&utm_medium=banner-ad&utm_content=personal-50" target="_blank" class="nf-remove-promo-styling"><img src="' . Ninja_forms::$url . 'assets/img/promotions/dashboard/personal-50.svg"></a>',
+    'content'   => '<a href="https://ninjaforms.com/personal-membership/?utm_campaign=ninja-forms-plugin&utm_source=dashboard&utm_medium=banner-ad&utm_content=personal-50" target="_blank" class="nf-remove-promo-styling"><img src="' . Ninja_forms::$url . 'assets/img/promotions/dashboard/personal-50.png"></a>',
     'script'    => "",
   ),
 
