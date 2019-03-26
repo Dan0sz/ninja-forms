@@ -1,4 +1,4 @@
-const nfLocaleConverter = require('./nfLocaleConverter');
+const nfLocaleConverter = require('../nfLocaleConverter');
 
 test('locale decode zero', () => {
     let nfConverter = new nfLocaleConverter();
