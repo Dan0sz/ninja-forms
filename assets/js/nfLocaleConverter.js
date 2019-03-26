@@ -30,7 +30,6 @@ class nfLocaleConverter {
         }
         
         // Account for a space as the thousands separator.
-        // thousands_sep = str_replace( '&bnps;', ' ', thousands_sep );
         let nbsp_regex = new RegExp('&nbsp;', 'g');
         num = num.replace( nbsp_regex, ' ');
 
@@ -96,10 +95,7 @@ class nfLocaleConverter {
     numberEncoder(num) {
         num = this.numberDecoder(num);
         
-        // return num.toLocaleString(this.locale);
-        let ret_num = Intl.NumberFormat(this.locale).format(num);
-        
-        return ret_num.replace(" ", "huh");
+        return Intl.NumberFormat(this.locale).format(num);
     }
 }
 
