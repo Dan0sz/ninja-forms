@@ -167,8 +167,11 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
             wp_localize_script( 'nf-dashboard', 'nfi18n', Ninja_Forms::config( 'i18nDashboard' ) );
 
             $promotions = get_option( 'nf_active_promotions' );
-            wp_localize_script( 'nf-dashboard', 'nfPromotions', array_values( $promotions[ 'dashboard' ] ) );
-            
+            $promotions = json_decode( $promotions, true );
+
+            if( ! empty( $promotions ) ) {
+                wp_localize_script( 'nf-dashboard', 'nfPromotions', array_values( $promotions[ 'dashboard' ] ) );
+            }
             
             wp_localize_script( 'nf-dashboard', 'nfAdmin', array(
                 'ajaxNonce'         => wp_create_nonce( 'ninja_forms_dashboard_nonce' ),

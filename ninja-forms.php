@@ -620,7 +620,8 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         public function nf_run_promotion_manager()
         {
             $promotion_manager = new NF_PromotionManager();
-            update_option( 'nf_active_promotions', $promotion_manager->get_promotions(), false );
+            $promomotions = json_encode( $promotion_manager->get_promotions() );
+            update_option( 'nf_active_promotions', $promomotions, false );
         }
 
         public function admin_notices()
