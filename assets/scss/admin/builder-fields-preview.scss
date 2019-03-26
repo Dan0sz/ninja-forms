@@ -1,0 +1,128 @@
+.nf-realistic-field input[type="text"],
+.nf-realistic-field input[type="email"] {
+    width: 100%;
+    max-width: 100%;
+    background: #f9f9f9;
+    height: 50px;
+    padding: 12px;
+    border: 0;
+    color: #787878;
+}
+.ninja-forms-req-symbol {
+    color: red;
+}
+
+.nf-realistic-field button,
+.nf-realistic-field input[type="button"],
+.nf-realistic-field input[type="submit"] {
+    width: auto;
+    height: 50px;
+    padding: 12px;
+    border-radius: 2px;
+    background: #333;
+    border: 0;
+    color: #f7f7f7;
+}
+
+.nf-field-wrap {
+    border: 1px solid transparent;
+    transition: border-color .25s;
+
+    &:hover {
+        border-color: #ccc;
+    }
+
+    & .nf-item-controls {
+        display: none;
+    }
+
+    &:hover .nf-item-controls {
+        display: block;
+    }
+}
+
+.nf-realistic-field .nf-field-label {
+    margin-left: 0!important;
+}
+
+.nf-realistic-field .nf-realistic-field--label label {
+    font-size: 16px!important;
+    text-transform: none!important;
+}
+
+.nf-realistic-field .nf-realistic-field--element input,
+.nf-realistic-field .nf-realistic-field--element textarea {
+    border: 1px solid #c4c4c4!important;
+}
+
+
+/**
+ * Label Below
+ */
+
+.nf-realistic-field.nf-realistic-field--label-below {
+    display: flex;
+    flex-direction: column;
+}
+.nf-realistic-field.nf-realistic-field--label-below .nf-realistic-field--label {
+    order: 5;
+}
+.nf-realistic-field.nf-realistic-field--label-below .nf-realistic-field .nf-realistic-field--description {
+    order: 4;
+}
+.nf-realistic-field.nf-realistic-field--label-below .nf-realistic-field .nf-realistic-field--element {
+    order: 3;
+}
+
+/**
+ * Label Left
+ */
+
+.nf-realistic-field.nf-realistic-field--label-left {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    .nf-realistic-field--label {
+        order: 3;
+        width: 35%;
+    }
+
+    .nf-realistic-field--element {
+        order: 4;
+        width: 65%;
+    }    
+
+    .nf-realistic-field--description {
+        order: 5;
+        width: 100%;
+        margin-left: 35%;
+    }
+}
+
+/**
+ * Label Right
+ */
+
+ .nf-realistic-field.nf-realistic-field--label-right {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    .nf-realistic-field--label {
+        order: 4;
+        width: 35%;
+        padding-left: 2%;
+    }
+
+    .nf-realistic-field--element {
+        order: 3;
+        width: 65%;
+    }    
+
+    .nf-realistic-field--description {
+        order: 5;
+        width: 100%;
+        margin-left: 35%;
+    }
+}

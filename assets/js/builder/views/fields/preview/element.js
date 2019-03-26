@@ -1,11 +1,3 @@
-/**
- * Renders an application menu item from a domain model.
- *
- * @package Ninja Forms builder
- * @subpackage App
- * @copyright (c) 2015 WP Ninjas
- * @since 3.0
- */
 define( [], function() {
 	var view = Marionette.ItemView.extend({
 		tagName: 'div',
@@ -13,26 +5,11 @@ define( [], function() {
 
 		initialize: function() {
 			this.template = '#tmpl-nf-field-' + this.model.get('type');
-			
-			console.log( '<REALISTIC FIELD VIEW INIT>' );
-			console.log( this );
-			console.log( this.model );
-			console.log( this.model.get('type') );
-			console.log( this.template );
-			console.log( '</REALISTIC FIELD VIEW INIT>' );
 		},
 
 		onRender: function() {
 			// ...
 		},
-
-		events: {
-			'mouseover .nf-realistic-field': 'onMouseover'
-		},
-
-		onMouseover: function( e ) {
-			console.log(this.model);
-        },
         
 		templateHelpers: function () {
 	    	return {

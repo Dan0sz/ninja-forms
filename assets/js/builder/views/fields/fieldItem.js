@@ -1,4 +1,4 @@
-define( ['views/app/itemControls', 'views/fields/realisticField'], function( itemControlsView, realisticFieldView ) {
+define( ['views/app/itemControls', 'views/fields/preview/element', 'views/fields/preview/label'], function( itemControlsView, previewElementView, previewLabelView ) {
 	var view = Marionette.LayoutView.extend({
 		tagName: 'div',
 		template: '#tmpl-nf-main-content-field',
@@ -6,7 +6,8 @@ define( ['views/app/itemControls', 'views/fields/realisticField'], function( ite
 
 		regions: {
 			itemControls: '.nf-item-controls',
-			realisticField: '.nf-realistic-field'
+			previewLabel: '.nf-realistic-field--label',
+			previewElement: '.nf-realistic-field--element',
 		},
 
 		initialize: function() {
@@ -31,7 +32,11 @@ define( ['views/app/itemControls', 'views/fields/realisticField'], function( ite
 			this.itemControls.show( new itemControlsView( { model: this.model } ) );
 			jQuery( this.el ).disableSelection();
 
-			this.realisticField.show( new realisticFieldView( { model: this.model } ) );
+			this.previewElement.show( new previewElementView( { model: this.model } ) );
+
+			if('hidden' !== this.model.get('label_pos') && 'submit' !== this.model.get('type')){
+				this.previewLabel.show( new previewLabelView( { model: this.model } ) );
+			}
 
 			if ( nfRadio.channel( 'app' ).request( 'is:mobile' ) ) {
 				jQuery( this.el ).on( 'taphold', function( e, touch ) {
@@ -75,6 +80,12 @@ define( ['views/app/itemControls', 'views/fields/realisticField'], function( ite
 					icon.classList.add( 'fa', 'fa-' + type.get( 'icon' ) );
 
 					return icon.outerHTML;
+				},
+				labelPosition: function() {
+					return this.label_pos;
+				},
+				renderDescriptionText: function() {
+					return jQuery.trim(this.desc_text);
 				}
 			};
 		},
