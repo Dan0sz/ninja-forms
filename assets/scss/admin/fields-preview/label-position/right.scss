@@ -26,14 +26,28 @@
  */
 
 .nf-field-wrap.checkbox .nf-realistic-field.nf-realistic-field--label-right {
+    align-items: flex-start;
+
     .nf-realistic-field--label {
         order: 4;
-        width: 1fr;
+        width: auto;
         padding-left: 2%;
+        padding-right: 2%;
+        margin-bottom: 0;
+
+        .nf-field-label {
+            width: 100%;
+        }
     }
 
     .nf-realistic-field--element {
         order: 3;
         width: auto;
     }    
+
+    .nf-realistic-field--description {
+        order: 5;
+        width: auto;
+        margin-left: 0;
+    }
 }
