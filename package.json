@@ -2,7 +2,8 @@
   "name": "ninja-forms",
   "version": "3.2.0",
   "scripts": {
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "test": "jest ./assets/js/tests/*"
   },
   "dependencies": {
     "backbone.marionette": "^3.2.0"
@@ -19,6 +20,9 @@
     "gulp-requirejs-optimize": "^0.3.2",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^1.5.3"
+    "gulp-uglify": "^1.5.3",
+    "jest": "^24.5.0",
+    "full-icu": "^1.2.1",
+    "intl": "^1.2.5"
   }
 }
