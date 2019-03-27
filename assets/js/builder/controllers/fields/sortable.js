@@ -256,7 +256,21 @@ define( [], function() {
 		startFieldsSortable: function( ui ) {
 			// If we aren't dragging an item in from types or staging, update our change log.
 			if( ! jQuery( ui.item ).hasClass( 'nf-field-type-draggable' ) && ! jQuery( ui.item ).hasClass( 'nf-stage' ) ) { 
-				jQuery( ui.item ).css( 'opacity', '0.5' ).show();
+				
+				// Maintain origional visibility during drag/sort.
+				jQuery( ui.item ).show();
+
+				// Clone parent wrapper as new helper.
+				var newHelper = jQuery(ui.item).parent().clone();
+
+				// Remove unecessary item controls from helper.
+				newHelper.find('.nf-item-controls').remove();
+
+				// Update helper with clone's content.
+				jQuery( ui.helper ).html( newHelper.html() );
+				
+				// Add de-emphasize origional.
+				jQuery( ui.item ).css( 'opacity', '0.5' );
 			}
 			nfRadio.channel( 'fields' ).trigger( 'sortable:start', ui );
 		},
