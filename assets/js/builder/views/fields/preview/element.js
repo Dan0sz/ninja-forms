@@ -49,9 +49,6 @@ define( [], function() {
 					// ...
 				},
 				renderOptions: function() {
-					console.log(this.type);
-					console.log(this.options);
-
 					switch(this.type) {
 						case 'liststate':
 						case 'listselect':
