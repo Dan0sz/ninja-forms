@@ -214,10 +214,15 @@ define(['models/calcCollection'], function( CalcCollection ) {
 			 */
 			var value = nfRadio.channel( fieldModel.get( 'type' ) ).request( 'get:calcValue', fieldModel );
 
+
+			var localeConverter = new nfLocaleConverter();
+
+			var formattedNumber = localeConverter.numberDecoder(fieldModel.get( 'value' )); 
+
 			// If value is 'undefined', then we got no response. Set value to field model value.
 			if ( 'undefined' == typeof value ) {
-				if ( jQuery.isNumeric( fieldModel.get( 'value' ) ) ) {
-					value = fieldModel.get( 'value' );
+				if ( jQuery.isNumeric( formattedNumber ) ) {
+					value = formattedNumber;
 				} else {
 					value = 0;
 				}
@@ -299,6 +304,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
 		changeField: function( calcModel, fieldModel ) {
 			var key = fieldModel.get( 'key' );
 			var value = this.getCalcValue( fieldModel );
+			
 			this.updateCalcFields( calcModel, key, value );
 			var eqValues = this.replaceAllKeys( calcModel );
 
@@ -385,9 +391,10 @@ define(['models/calcCollection'], function( CalcCollection ) {
 //							calcValue = calcValue.toFixed( 2 );
 //							rounding = false;
 //						}
+						
                         if( 'undefined' != typeof( calcValue ) ) {
                             calcValue = that.applyLocaleFormatting( calcValue );
-                        }
+						}
                         /*
                          * We replace the merge tag with the value
 						 * surrounded by a span so that we can still find it
@@ -403,6 +410,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
                         	value = calcValue;
                         }
 					} );
+					
 					fieldModel.set( 'value', value );
 					if ( ! that.init[ calcModel.get( 'name' ) ] ) {
 						// fieldModel.set( 'reRender', true );
@@ -437,20 +445,24 @@ define(['models/calcCollection'], function( CalcCollection ) {
          * @return Str
          */
         applyLocaleFormatting: function( number ) {
+
+			var localeConverter = new nfLocaleConverter(nfi18n.siteLocale);
+
+			var formattedNumber = localeConverter.numberEncoder(number);
             
-            // Split our string on the decimal to preserve context.
-            var splitNumber = number.split('.');
-            // If we have more than one element (if we had a decimal point)...
-            if ( splitNumber.length > 1 ) {
-                // Update the thousands and remerge the array.
-                splitNumber[ 0 ] = splitNumber[ 0 ].replace( /\B(?=(\d{3})+(?!\d))/g, nfi18n.thousands_sep );
-                var formattedNumber = splitNumber.join( nfi18n.decimal_point );
-            }
-            // Otherwise (we had no decimal point)...
-            else {
-                // Update the thousands.
-                var formattedNumber = number.replace( /\B(?=(\d{3})+(?!\d))/g, nfi18n.thousands_sep );
-            }
+            // // Split our string on the decimal to preserve context.
+            // var splitNumber = number.split('.');
+            // // If we have more than one element (if we had a decimal point)...
+            // if ( splitNumber.length > 1 ) {
+            //     // Update the thousands and remerge the array.
+            //     splitNumber[ 0 ] = splitNumber[ 0 ].replace( /\B(?=(\d{3})+(?!\d))/g, nfi18n.thousands_sep );
+            //     var formattedNumber = splitNumber.join( nfi18n.decimal_point );
+            // }
+            // // Otherwise (we had no decimal point)...
+            // else {
+            //     // Update the thousands.
+            //     var formattedNumber = number.replace( /\B(?=(\d{3})+(?!\d))/g, nfi18n.thousands_sep );
+            // }
             return formattedNumber;
         }
 	});

@@ -1,9 +1,10 @@
-const Intl = require('intl');
+// const Intl = require('intl');
 
-class nfLocaleConverter {
+// class nfLocaleConverter {
+var nfLocaleConverter = function(newLocale, thousands_sep, decimal_sep) {
 
-    constructor(newLocale = 'en-US', thousands_sep, decimal_sep) {
-        if (0 < newLocale.length) {
+    // constructor(newLocale = 'en-US', thousands_sep, decimal_sep) {
+        if ('undefined' !== typeof newLocale && 0 < newLocale.length) {
             this.locale = newLocale.replace('_','-');
         } else {
             this.locale = 'en-US';
@@ -11,18 +12,18 @@ class nfLocaleConverter {
 
         this.thousands_sep = thousands_sep || ',';
         this.decimal_sep = decimal_sep || '.';
-    }
+    // }
 
-    uniqueElememts( value, index, self ) {
+    this.uniqueElememts = function( value, index, self ) {
         return self.indexOf(value) === index;
     }
 
-    numberDecoder(num) {
+    this.numberDecoder = function(num) {
         // let thousands_sep = ',';
-        let formatted = '';
+        var formatted = '';
 
         // Account for negative numbers.
-        let negative = false;
+        var negative = false;
         
         if ( '-' === num.charAt(0)) {
             negative = true;
@@ -30,24 +31,24 @@ class nfLocaleConverter {
         }
         
         // Account for a space as the thousands separator.
-        let nbsp_regex = new RegExp('&nbsp;', 'g');
+        var nbsp_regex = new RegExp('&nbsp;', 'g');
         num = num.replace( nbsp_regex, ' ');
 
         // Determine what our existing separators are.
-        let myArr = num.split('');
-        let separators = myArr.filter(function(el) {
+        var myArr = num.split('');
+        var separators = myArr.filter(function(el) {
             return el.match(/^((?![0-9]).)*$/s);
           });
           
-        let final_separators = separators.filter(this.uniqueElememts);
+        var final_separators = separators.filter(this.uniqueElememts);
         
         switch( final_separators.length ) {
             case 0:
                 formatted = num;
                 break;
             case 1:
-                let replacer = '';
-                let re = new RegExp(final_separators[0], 'g');
+                var replacer = '';
+                var re = new RegExp(final_separators[0], 'g');
 
                 if('.' === final_separators[0]) {
                     re = new RegExp('[.]','g');
@@ -62,7 +63,7 @@ class nfLocaleConverter {
                 formatted = num.replace(re, replacer);
                 break;
             case 2:
-                let find_one = final_separators[0];
+                var find_one = final_separators[0];
                 var re_one;
                 if('.' === find_one) {
                     re_one = new RegExp('[.]', 'g');
@@ -71,7 +72,7 @@ class nfLocaleConverter {
                 }
                 formatted = num.replace(re_one, '');
                 
-                let find_two = final_separators[1];
+                var find_two = final_separators[1];
                 
                 var re_two;
                 if('.' === find_two) {
@@ -92,12 +93,11 @@ class nfLocaleConverter {
         return formatted;
     }
 
-    numberEncoder(num) {
+    this.numberEncoder = function(num) {
         num = this.numberDecoder(num);
         
         return Intl.NumberFormat(this.locale).format(num);
     }
 }
 
-
-module.exports = nfLocaleConverter;
+// module.exports = nfLocaleConverter;
