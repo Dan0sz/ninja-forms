@@ -110,11 +110,26 @@
     }
 }
 
+.nf-field-wrap.checkbox .nf-realistic-field.nf-realistic-field--label-left {
+    .nf-realistic-field--label {
+        order: 3;
+        width: 38%;
+        padding-left: 0;
+        padding-right: 5%;
+        text-align: center;
+    }
+
+    .nf-realistic-field--element {
+        order: 4;
+        width: 58%;
+    }    
+}
+
 /**
  * Label Right
  */
 
- .nf-realistic-field.nf-realistic-field--label-right {
+.nf-realistic-field.nf-realistic-field--label-right {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -135,4 +150,16 @@
         width: 100%;
         margin-left: 35%;
     }
+}
+.nf-field-wrap.checkbox .nf-realistic-field.nf-realistic-field--label-right {
+    .nf-realistic-field--label {
+        order: 4;
+        width: 1fr;
+        padding-left: 2%;
+    }
+
+    .nf-realistic-field--element {
+        order: 3;
+        width: auto;
+    }    
 }
