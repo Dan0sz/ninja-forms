@@ -1,0 +1,39 @@
+.nf-realistic-field.nf-realistic-field--label-right {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    .nf-realistic-field--label {
+        order: 4;
+        width: 35%;
+        padding-left: 2%;
+    }
+
+    .nf-realistic-field--element {
+        order: 3;
+        width: 65%;
+    }    
+
+    .nf-realistic-field--description {
+        order: 5;
+        width: 100%;
+        margin-left: 35%;
+    }
+}
+
+/**
+ * Checkbox
+ */
+
+.nf-field-wrap.checkbox .nf-realistic-field.nf-realistic-field--label-right {
+    .nf-realistic-field--label {
+        order: 4;
+        width: 1fr;
+        padding-left: 2%;
+    }
+
+    .nf-realistic-field--element {
+        order: 3;
+        width: auto;
+    }    
+}
