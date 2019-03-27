@@ -171,8 +171,8 @@
 
         <div class="nf-realistic-field nf-realistic-field--label-{{{data.labelPosition()}}}" id="nf-field-{{{ data.getFieldID() }}}-wrap">
             <div class="nf-realistic-field--label"></div>
-            <div class="nf-realistic-field--element"></div>
             <div class="nf-realistic-field--description">{{{ data.renderDescriptionText() }}}</div>
+            <div class="nf-realistic-field--element"></div>
         </div>
     </div>
 </script>

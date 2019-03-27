@@ -47,6 +47,7 @@
 
 .nf-realistic-field .nf-realistic-field--label label {
     font-size: 16px!important;
+    margin-bottom: 10px;
     text-transform: none!important;
 }
 
@@ -57,21 +58,30 @@
 
 
 /**
+ * Label Above
+ */
+
+.nf-realistic-field.nf-realistic-field--label-above {
+    display: block;
+}
+
+/**
  * Label Below
  */
 
 .nf-realistic-field.nf-realistic-field--label-below {
     display: flex;
     flex-direction: column;
-}
-.nf-realistic-field.nf-realistic-field--label-below .nf-realistic-field--label {
-    order: 5;
-}
-.nf-realistic-field.nf-realistic-field--label-below .nf-realistic-field .nf-realistic-field--description {
-    order: 4;
-}
-.nf-realistic-field.nf-realistic-field--label-below .nf-realistic-field .nf-realistic-field--element {
-    order: 3;
+
+    .nf-realistic-field--label {
+        order: 5;
+    }
+    .nf-realistic-field--description {
+        order: 4;
+    }
+    .nf-realistic-field--element {
+        order: 3;
+    }
 }
 
 /**
