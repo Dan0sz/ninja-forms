@@ -1,6 +1,6 @@
 <?php
 
-class NF_Locale_Formatting
+class NF_Handlers_LocaleNumberFormatting
 {
     const NBSP = '&nbsp;';
 
@@ -92,5 +92,31 @@ class NF_Locale_Formatting
         $number = floatval( $number );
 
         return number_format( $number, $precision, $decimal_point, $thousands_sep );
+    }
+
+    public function locale_decode_equation( string $eq ) {
+        $result = '';
+        $expression = '';
+        $pattern = '/[0-9.,]/';
+        $eq = str_replace( array('&nbsp;', '&thinsp;', ' '), '', $eq );
+        $characters = str_split( $eq );
+        foreach ( $characters as $character ) {
+            // If it matches the pattern...
+            if ( preg_match( $pattern, $character ) ) {
+                $expression .= $character;
+            } else {
+                // If we reach an operator char, append the expression to the result
+                if ( 0 < strlen( $expression ) ) {
+                    $result .= $this->locale_decode_number( $expression );
+                    $expression = '';
+                }
+                $result .= $character;
+            }
+        }
+        // The following catches the case of the last character being a digit.
+        if ( 0 < strlen( $expression ) ) {
+            $result .= $this->locale_decode_number( $expression );
+        }
+        return $result;
     }
 }
