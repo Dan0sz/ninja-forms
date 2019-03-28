@@ -70,6 +70,10 @@ jQuery( document ).ready( function( $ ) {
 				nfRadio.channel( 'app' ).trigger( 'after:loadControllers' );
 
 				nfRadio.channel( 'app' ).reply( 'get:template', this.template );
+
+				nfRadio.channel( 'app' ).reply( 'locale:decodeNumber', this.decodeNumber);
+
+				nfRadio.channel( 'app' ).reply( 'locale:encodeNumber',this.encodeNumber);
 			},
 			
 			onStart: function() {
@@ -176,6 +180,18 @@ jQuery( document ).ready( function( $ ) {
 					escape:      /\{\{([^\}]+?)\}\}(?!\})/g,
 					variable:    'data'
 				} );
+			},
+
+			encodeNumber: function(num) {
+				var localeConverter = new nfLocaleConverter(nfi18n.site_locale);
+
+				return localeConverter.numberEncoder(num);
+			},
+
+			decodeNumber: function(num) {
+				var localeConverter = new nfLocaleConverter();
+
+				return localeConverter.numberDecoder(num);
 			}
 		});
 	

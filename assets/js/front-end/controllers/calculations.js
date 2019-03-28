@@ -164,12 +164,12 @@ define(['models/calcCollection'], function( CalcCollection ) {
 
             // Scrub unmerged tags (ie deleted/nox-existent fields/calcs, etc).
             eqValues = eqValues.replace( /{([a-zA-Z0-9]|:|_|-)*}/g, 0 );
-
+			console.log(eqValues);
             // Scrub line breaks.
             eqValues = eqValues.replace( /\r?\n|\r/g, '' );
 			// Evaluate the equation and update the value of this model.
 			try {
-				calcModel.set( 'value', Number( mexp.eval( eqValues ) ).toFixed( calcModel.get( 'dec' ) ) );
+				calcModel.set( 'value', Number( mexp.eval( this.localeDecodeEquation(eqValues) ) ).toFixed( calcModel.get( 'dec' ) ) );
 			} catch( e ) {
                 //console.log( calcName );
 				console.log( e );
@@ -310,10 +310,10 @@ define(['models/calcCollection'], function( CalcCollection ) {
 
             // Scrub unmerged tags (ie deleted/nox-existent fields/calcs, etc).
             eqValues = eqValues.replace( /{([a-zA-Z0-9]|:|_|-)*}/g, '0' );
-
+			console.log('ChangeField eqValues: ', eqValues);
             eqValues = eqValues.replace( /\r?\n|\r/g, '' );
             try {
-			     calcModel.set( 'value', Number( mexp.eval( eqValues ) ).toFixed( calcModel.get( 'dec' ) ) );
+			     calcModel.set( 'value', Number( mexp.eval( this.localeDecodeEquation(eqValues) ) ).toFixed( calcModel.get( 'dec' ) ) );
             } catch( e ) {
                 console.log( e );
             }
@@ -427,10 +427,11 @@ define(['models/calcCollection'], function( CalcCollection ) {
 
 		changeCalc: function( calcModel, targetCalcModel ) {
 			var eqValues = this.replaceAllKeys( calcModel );
+			console.log(eqValues);
 			eqValues = eqValues.replace( '[', '' ).replace( ']', '' );
             eqValues = eqValues.replace( /\r?\n|\r/g, '' );
             try {
-			     calcModel.set( 'value', Number( mexp.eval( eqValues ) ).toFixed( calcModel.get( 'dec' ) ) );
+			     calcModel.set( 'value', Number( mexp.eval( this.localeDecodeEquation( eqValues ) ) ).toFixed( calcModel.get( 'dec' ) ) );
             } catch( e ) {
                 console.log( e );
             }
@@ -449,7 +450,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
 			var localeConverter = new nfLocaleConverter(nfi18n.siteLocale);
 
 			var formattedNumber = localeConverter.numberEncoder(number);
-            
+            console.log(formattedNumber);
             // // Split our string on the decimal to preserve context.
             // var splitNumber = number.split('.');
             // // If we have more than one element (if we had a decimal point)...
@@ -464,7 +465,37 @@ define(['models/calcCollection'], function( CalcCollection ) {
             //     var formattedNumber = number.replace( /\B(?=(\d{3})+(?!\d))/g, nfi18n.thousands_sep );
             // }
             return formattedNumber;
-        }
+		},
+		
+		localeDecodeEquation: function( eq ) {
+			var result = '';
+			var expression = '';
+			var pattern = new RegExp('/[0-9.,]/','g');
+			var localeConverter = nfLocaleConverter();
+			// eq = str_replace( array('&nbsp;', '&thinsp;', ' '), '', eq );
+			eq = eq.replace( /&nbsp;|&thinsp;| /, '' );
+			var characters = eq.split('');
+			// foreach ( characters as character ) {
+			characters.forEach( function( character ) {
+				// If it matches the pattern...
+				if ( pattern.test( character ) ) {
+					expression = expression + character;
+				} else {
+					// If we reach an operator char, append the expression to the result
+					if ( 0 < expression.length ) {
+						result = result + localeConverter.numberDecoder( expression );
+						expression = '';
+					}
+					result = result + character;
+				}
+			});
+			// The following catches the case of the last character being a digit.
+			if ( 0 < expression.length ) {
+				$result = result + localeConverter.numberDecoder( expression );
+			}
+			return result;
+		}
+	
 	});
 
 	return controller;
