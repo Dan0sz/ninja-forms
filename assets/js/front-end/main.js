@@ -83,10 +83,6 @@ jQuery( document ).ready( function( $ ) {
 					nfRadio.channel( 'form' ).trigger( 'render:view', layoutView );
 					jQuery( document ).trigger( 'nfFormReady', layoutView );
 				} );
-
-				this.listenTo( nfRadio.channel( 'form' ), 'render:convertLocale', function() {
-					console.log('uh-oh');
-				});
 			},
 
 			restart: function( formModel ) {
