@@ -215,22 +215,22 @@ define(['models/calcCollection'], function( CalcCollection ) {
 
 
 			var localeConverter = new nfLocaleConverter();
+			
 
-			var formattedNumber = localeConverter.numberDecoder(fieldModel.get( 'value' )); 
-
-			// If value is 'undefined', then we got no response. Set value to field model value.
-			if ( 'undefined' == typeof value ) {
-				if ( jQuery.isNumeric( formattedNumber ) ) {
-					value = formattedNumber;
-				} else {
-					value = 0;
-				}
+			var calcValue = value || fieldModel.get( 'value' );
+			var formattedNumber = localeConverter.numberDecoder(calcValue); 
+			
+			if ( jQuery.isNumeric( formattedNumber ) ) {
+				value = formattedNumber;
+			} else {
+				value = 0;
 			}
+			// }
 
 			if ( ! fieldModel.get( 'visible' ) ) {
 				value = 0;
 			}
-
+		
 			return ( jQuery.isNumeric( value ) ) ? value : 0;
 		},
 
@@ -301,6 +301,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
 		 * @return void
 		 */
 		changeField: function( calcModel, fieldModel ) {
+		
 			var key = fieldModel.get( 'key' );
 			var value = this.getCalcValue( fieldModel );
 			
@@ -308,7 +309,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
 			var eqValues = this.replaceAllKeys( calcModel );
 
             // Scrub unmerged tags (ie deleted/nox-existent fields/calcs, etc).
-            eqValues = eqValues.replace( /{([a-zA-Z0-9]|:|_|-)*}/g, '0' );
+            // eqValues = eqValues.replace( /{([a-zA-Z0-9]|:|_|-)*}/g, '0' );
             eqValues = eqValues.replace( /\r?\n|\r/g, '' );
             try {
 			     calcModel.set( 'value', Number( mexp.eval( this.localeDecodeEquation(eqValues) ) ).toFixed( calcModel.get( 'dec' ) ) );
@@ -469,7 +470,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
 			var result = '';
 			var expression = '';
 			var pattern = new RegExp('/[0-9.,]/','g');
-			var localeConverter = nfLocaleConverter();
+			var localeConverter = new nfLocaleConverter();
 			// eq = str_replace( array('&nbsp;', '&thinsp;', ' '), '', eq );
 			eq = eq.replace( /&nbsp;|&thinsp;| /, '' );
 			var characters = eq.split('');

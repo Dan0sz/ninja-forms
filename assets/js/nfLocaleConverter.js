@@ -57,6 +57,11 @@ var nfLocaleConverter = function(newLocale, thousands_sep, decimal_sep) {
                     if ( this.thousands_sep != separators[0] && '&nbsp;' !== this.thousands_sep ) {
                         replacer = '.';
                         re = new RegExp('[.]', 'g');
+                    } else {
+                        var testNum = num.split(final_separators[0]);
+                        if(0 < testNum.length && 3 > testNum[1].length) {
+                            replacer = '.';
+                        }
                     }
                 }
                
