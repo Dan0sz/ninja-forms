@@ -309,7 +309,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
 			var eqValues = this.replaceAllKeys( calcModel );
 
             // Scrub unmerged tags (ie deleted/nox-existent fields/calcs, etc).
-            // eqValues = eqValues.replace( /{([a-zA-Z0-9]|:|_|-)*}/g, '0' );
+            eqValues = eqValues.replace( /{([a-zA-Z0-9]|:|_|-)*}/g, '0' );
             eqValues = eqValues.replace( /\r?\n|\r/g, '' );
             try {
 			     calcModel.set( 'value', Number( mexp.eval( this.localeDecodeEquation(eqValues) ) ).toFixed( calcModel.get( 'dec' ) ) );
