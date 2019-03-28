@@ -164,7 +164,6 @@ define(['models/calcCollection'], function( CalcCollection ) {
 
             // Scrub unmerged tags (ie deleted/nox-existent fields/calcs, etc).
             eqValues = eqValues.replace( /{([a-zA-Z0-9]|:|_|-)*}/g, 0 );
-			console.log(eqValues);
             // Scrub line breaks.
             eqValues = eqValues.replace( /\r?\n|\r/g, '' );
 			// Evaluate the equation and update the value of this model.
@@ -310,7 +309,6 @@ define(['models/calcCollection'], function( CalcCollection ) {
 
             // Scrub unmerged tags (ie deleted/nox-existent fields/calcs, etc).
             eqValues = eqValues.replace( /{([a-zA-Z0-9]|:|_|-)*}/g, '0' );
-			console.log('ChangeField eqValues: ', eqValues);
             eqValues = eqValues.replace( /\r?\n|\r/g, '' );
             try {
 			     calcModel.set( 'value', Number( mexp.eval( this.localeDecodeEquation(eqValues) ) ).toFixed( calcModel.get( 'dec' ) ) );
@@ -427,7 +425,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
 
 		changeCalc: function( calcModel, targetCalcModel ) {
 			var eqValues = this.replaceAllKeys( calcModel );
-			console.log(eqValues);
+			
 			eqValues = eqValues.replace( '[', '' ).replace( ']', '' );
             eqValues = eqValues.replace( /\r?\n|\r/g, '' );
             try {
@@ -450,7 +448,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
 			var localeConverter = new nfLocaleConverter(nfi18n.siteLocale);
 
 			var formattedNumber = localeConverter.numberEncoder(number);
-            console.log(formattedNumber);
+            
             // // Split our string on the decimal to preserve context.
             // var splitNumber = number.split('.');
             // // If we have more than one element (if we had a decimal point)...
