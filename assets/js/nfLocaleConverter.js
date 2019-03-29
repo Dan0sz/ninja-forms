@@ -19,6 +19,7 @@ var nfLocaleConverter = function(newLocale, thousands_sep, decimal_sep) {
     }
 
     this.numberDecoder = function(num) {
+
         // let thousands_sep = ',';
         var formatted = '';
 
@@ -37,7 +38,7 @@ var nfLocaleConverter = function(newLocale, thousands_sep, decimal_sep) {
         // Determine what our existing separators are.
         var myArr = num.split('');
         var separators = myArr.filter(function(el) {
-            return ! el.match(/[0-9]/);
+            return !el.match(/[0-9]/);
           });
           
         var final_separators = separators.filter(this.uniqueElememts);
@@ -94,7 +95,7 @@ var nfLocaleConverter = function(newLocale, thousands_sep, decimal_sep) {
         if ( negative ) {
             formatted = '-' + formatted;
         }
-
+        console.log('Number Decoder ' + num + ' -> ' + formatted );
         return formatted;
     }
 

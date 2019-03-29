@@ -168,6 +168,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
             eqValues = eqValues.replace( /\r?\n|\r/g, '' );
 			// Evaluate the equation and update the value of this model.
 			try {
+				console.log('Calculation Decoder ' + eqValues + ' -> ' + this.localeDecodeEquation(eqValues) );
 				calcModel.set( 'value', Number( mexp.eval( this.localeDecodeEquation(eqValues) ) ).toFixed( calcModel.get( 'dec' ) ) );
 			} catch( e ) {
                 //console.log( calcName );
@@ -218,7 +219,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
 			
 
 			var calcValue = value || fieldModel.get( 'value' );
-			var formattedNumber = localeConverter.numberDecoder(calcValue); 
+			var formattedNumber = localeConverter.numberDecoder(calcValue);
 			
 			if ( jQuery.isNumeric( formattedNumber ) ) {
 				value = formattedNumber;
