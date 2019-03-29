@@ -394,7 +394,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
 //						}
 						
                         if( 'undefined' != typeof( calcValue ) ) {
-                            calcValue = that.applyLocaleFormatting( calcValue );
+                            calcValue = that.applyLocaleFormatting( calcValue, calcModel );
 						}
                         /*
                          * We replace the merge tag with the value
@@ -447,11 +447,11 @@ define(['models/calcCollection'], function( CalcCollection ) {
          * 
          * @return Str
          */
-        applyLocaleFormatting: function( number ) {
+        applyLocaleFormatting: function( number, calcModel ) {
 
 			var localeConverter = new nfLocaleConverter(nfi18n.siteLocale);
 
-			var formattedNumber = localeConverter.numberEncoder(number);
+			var formattedNumber = localeConverter.numberEncoder(number, calcModel.get('dec'));
             
             // // Split our string on the decimal to preserve context.
             // var splitNumber = number.split('.');
