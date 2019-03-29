@@ -394,13 +394,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
 //						}
 						
                         if( 'undefined' != typeof( calcValue ) ) {
-							console.log('----');
-							console.log(calcValue);
-							calcValue = that.applyLocaleFormatting( calcValue );
-							console.log(calcValue);
-							calcValue = Number(calcValue).toFixed( calcModel.get( 'dec' ) );
-							console.log(calcValue);
-							console.log('----');
+                            calcValue = that.applyLocaleFormatting( calcValue );
 						}
                         /*
                          * We replace the merge tag with the value
@@ -411,7 +405,6 @@ define(['models/calcCollection'], function( CalcCollection ) {
 						  * value to calcValue
 						*/
                         if( "html" === fieldModel.get( 'type' ) ) {
-							console.log('Update calc inside HTML field ' + calcValue);
 	                        value = value.replace(re, "<span data-key=\"calc:" + name + "\">"
 		                        + calcValue + "</span>");
                         } else {
