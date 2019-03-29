@@ -219,9 +219,10 @@ define(['models/calcCollection'], function( CalcCollection ) {
 			
 
 			var calcValue = value || fieldModel.get( 'value' );
-			var formattedNumber = localeConverter.numberDecoder(calcValue);
-			
-			if ( jQuery.isNumeric( formattedNumber ) ) {
+			var machineNumber = localeConverter.numberDecoder(calcValue);
+			var formattedNumber = localeConverter.numberEncoder(calcValue);
+
+			if ( 'undefined' !== typeof machineNumber && jQuery.isNumeric( machineNumber ) ) {
 				value = formattedNumber;
 			} else {
 				value = 0;
@@ -232,7 +233,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
 				value = 0;
 			}
 		
-			return ( jQuery.isNumeric( value ) ) ? value : 0;
+			return value;
 		},
 
 		/**
