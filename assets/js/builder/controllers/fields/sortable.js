@@ -261,7 +261,9 @@ define( [], function() {
 				jQuery( ui.item ).show();
 
 				// Clone parent wrapper as new helper.
-				var newHelper = jQuery(ui.item).parent().clone();
+				var newHelper = jQuery(ui.item).clone();
+				// var newHelper = jQuery(ui.item).parent().clone();
+				console.log(newHelper);
 
 				// Remove unecessary item controls from helper.
 				newHelper.find('.nf-item-controls').remove();
