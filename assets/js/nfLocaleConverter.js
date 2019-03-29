@@ -59,8 +59,8 @@ var nfLocaleConverter = function(newLocale, thousands_sep, decimal_sep) {
                         replacer = '.';
                     }
                 }
-               
-                formatted = num.replace(re, replacer);
+
+                formatted = num.replace(separator, replacer);
                 break;
             case 2:
                 var find_one = final_separators[0];
