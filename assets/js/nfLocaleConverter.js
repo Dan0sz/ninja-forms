@@ -49,20 +49,14 @@ var nfLocaleConverter = function(newLocale, thousands_sep, decimal_sep) {
                 break;
             case 1:
                 var replacer = '';
-                var re = new RegExp(final_separators[0], 'g');
-
-                if('.' === final_separators[0]) {
-                    re = new RegExp('[.]','g');
-                }
                 if ( 1 == separators.length ) {
-                    if ( this.thousands_sep != separators[0] && '&nbsp;' !== this.thousands_sep ) {
-                        replacer = '.';
-                        re = new RegExp('[.]', 'g');
+                    separator = separators.pop();
+                    var sides = num.split(separator);
+                    var last = sides.pop();
+                    if ( 3 == last.length && separator == this.thousands_sep ) {
+                        replacer = '';
                     } else {
-                        var testNum = num.split(final_separators[0]);
-                        if(0 < testNum.length && 3 > testNum[1].length) {
-                            replacer = '.';
-                        }
+                        replacer = '.';
                     }
                 }
                
