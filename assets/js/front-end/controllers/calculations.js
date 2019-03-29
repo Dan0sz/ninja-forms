@@ -168,7 +168,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
             eqValues = eqValues.replace( /\r?\n|\r/g, '' );
 			// Evaluate the equation and update the value of this model.
 			try {
-				console.log('Calculation Decoder ' + eqValues + ' -> ' + this.localeDecodeEquation(eqValues) );
+				console.log('Calculation Decoder ' + eqValues + ' -> ' + this.localeDecodeEquation(eqValues) + ' (Setup)');
 				calcModel.set( 'value', Number( mexp.eval( this.localeDecodeEquation(eqValues) ) ).toFixed( calcModel.get( 'dec' ) ) );
 			} catch( e ) {
                 //console.log( calcName );
@@ -313,6 +313,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
             eqValues = eqValues.replace( /{([a-zA-Z0-9]|:|_|-)*}/g, '0' );
             eqValues = eqValues.replace( /\r?\n|\r/g, '' );
             try {
+				console.log('Calculation Decoder ' + eqValues + ' -> ' + this.localeDecodeEquation(eqValues) + ' (Change Field)');
 			     calcModel.set( 'value', Number( mexp.eval( this.localeDecodeEquation(eqValues) ) ).toFixed( calcModel.get( 'dec' ) ) );
             } catch( e ) {
                 console.log( e );
@@ -431,6 +432,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
 			eqValues = eqValues.replace( '[', '' ).replace( ']', '' );
             eqValues = eqValues.replace( /\r?\n|\r/g, '' );
             try {
+				console.log('Calculation Decoder ' + eqValues + ' -> ' + this.localeDecodeEquation(eqValues) + ' (Change Calc)');
 			     calcModel.set( 'value', Number( mexp.eval( this.localeDecodeEquation( eqValues ) ) ).toFixed( calcModel.get( 'dec' ) ) );
             } catch( e ) {
                 console.log( e );
