@@ -8,7 +8,7 @@ require_once 'includes/Telemetry/Metric.php';
 require_once 'includes/Telemetry/CountMetric.php';
 require_once 'includes/Telemetry/MaxMetric.php';
 require_once 'includes/Telemetry/RepositoryInterface.php';
-require_once 'includes/LocaleFormatting.php';
+require_once 'includes/Handlers/LocaleNumberFormatting.php';
 
 function update_option( $value ) {
     return $value;
