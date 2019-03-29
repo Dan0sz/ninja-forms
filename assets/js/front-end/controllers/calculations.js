@@ -215,7 +215,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
 			var value = nfRadio.channel( fieldModel.get( 'type' ) ).request( 'get:calcValue', fieldModel );
 
 
-			var localeConverter = new nfLocaleConverter();
+			var localeConverter = new nfLocaleConverter(nfi18n.siteLocale, nfi18n.thousands_sep);
 			
 
 			var calcValue = value || fieldModel.get( 'value' );
@@ -473,7 +473,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
 			var result = '';
 			var expression = '';
 			var pattern = /[0-9.,]/;
-			var localeConverter = new nfLocaleConverter();
+			var localeConverter = new nfLocaleConverter(nfi18n.siteLocale, nfi18n.thousands_sep);
 			// eq = str_replace( array('&nbsp;', '&thinsp;', ' '), '', eq );
 			eq = eq.replace( /&nbsp;|&thinsp;| /, '' );
 			var characters = eq.split('');
