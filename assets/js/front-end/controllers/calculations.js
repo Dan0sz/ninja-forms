@@ -168,7 +168,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
             eqValues = eqValues.replace( /\r?\n|\r/g, '' );
 			// Evaluate the equation and update the value of this model.
 			try {
-				console.log('Calculation Decoder ' + eqValues + ' -> ' + this.localeDecodeEquation(eqValues) );
+				this.debug('Calculation Decoder ' + eqValues + ' -> ' + this.localeDecodeEquation(eqValues) + ' (Setup)');
 				calcModel.set( 'value', Number( mexp.eval( this.localeDecodeEquation(eqValues) ) ).toFixed( calcModel.get( 'dec' ) ) );
 			} catch( e ) {
                 //console.log( calcName );
@@ -313,9 +313,10 @@ define(['models/calcCollection'], function( CalcCollection ) {
             eqValues = eqValues.replace( /{([a-zA-Z0-9]|:|_|-)*}/g, '0' );
             eqValues = eqValues.replace( /\r?\n|\r/g, '' );
             try {
+				this.debug('Calculation Decoder ' + eqValues + ' -> ' + this.localeDecodeEquation(eqValues) + ' (Change Field)');
 			     calcModel.set( 'value', Number( mexp.eval( this.localeDecodeEquation(eqValues) ) ).toFixed( calcModel.get( 'dec' ) ) );
             } catch( e ) {
-                console.log( e );
+                if(this.debug())console.log( e );
             }
             if( calcModel.get( 'value' ) === 'NaN' ) calcModel.set( 'value', '0' );
 
@@ -393,7 +394,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
 //						}
 						
                         if( 'undefined' != typeof( calcValue ) ) {
-                            calcValue = that.applyLocaleFormatting( calcValue );
+                            calcValue = that.applyLocaleFormatting( calcValue, calcModel );
 						}
                         /*
                          * We replace the merge tag with the value
@@ -431,6 +432,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
 			eqValues = eqValues.replace( '[', '' ).replace( ']', '' );
             eqValues = eqValues.replace( /\r?\n|\r/g, '' );
             try {
+				this.debug('Calculation Decoder ' + eqValues + ' -> ' + this.localeDecodeEquation(eqValues) + ' (Change Calc)');
 			     calcModel.set( 'value', Number( mexp.eval( this.localeDecodeEquation( eqValues ) ) ).toFixed( calcModel.get( 'dec' ) ) );
             } catch( e ) {
                 console.log( e );
@@ -445,11 +447,11 @@ define(['models/calcCollection'], function( CalcCollection ) {
          * 
          * @return Str
          */
-        applyLocaleFormatting: function( number ) {
+        applyLocaleFormatting: function( number, calcModel ) {
 
 			var localeConverter = new nfLocaleConverter(nfi18n.siteLocale);
 
-			var formattedNumber = localeConverter.numberEncoder(number);
+			var formattedNumber = localeConverter.numberEncoder(number, calcModel.get('dec'));
             
             // // Split our string on the decimal to preserve context.
             // var splitNumber = number.split('.');
@@ -494,6 +496,10 @@ define(['models/calcCollection'], function( CalcCollection ) {
 				result = result + localeConverter.numberDecoder( expression );
 			}
 			return result;
+		},
+
+		debug: function(message) {
+			if ( window.nfCalculationsDebug || false ) console.log(message);
 		}
 	
 	});

@@ -95,14 +95,18 @@ var nfLocaleConverter = function(newLocale, thousands_sep, decimal_sep) {
         if ( negative ) {
             formatted = '-' + formatted;
         }
-        console.log('Number Decoder ' + num + ' -> ' + formatted );
+        this.debug('Number Decoder ' + num + ' -> ' + formatted );
         return formatted;
     }
 
-    this.numberEncoder = function(num) {
+    this.numberEncoder = function(num, percision) {
         num = this.numberDecoder(num);
-        
-        return Intl.NumberFormat(this.locale).format(num);
+
+        return Intl.NumberFormat(this.locale, { minimumFractionDigits: percision, maximumFractionDigits: percision }).format(num);
+    }
+
+    this.debug = function(message) {
+        if ( window.nfLocaleConverterDebug || false ) console.log(message);
     }
 }
 
