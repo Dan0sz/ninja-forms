@@ -19,14 +19,14 @@ var nfLocaleConverter = function(newLocale, thousands_sep, decimal_sep) {
     }
 
     this.numberDecoder = function(num) {
-
+        num = num.toString();
         // let thousands_sep = ',';
         var formatted = '';
 
         // Account for negative numbers.
         var negative = false;
         
-        if ( '-' === num.charAt(0)) {
+        if ('-' === num.charAt(0)) {
             negative = true;
             num = num.replace( '-', '');
         }
