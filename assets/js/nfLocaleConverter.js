@@ -32,8 +32,9 @@ var nfLocaleConverter = function(newLocale, thousands_sep, decimal_sep) {
         }
         
         // Account for a space as the thousands separator.
-        var nbsp_regex = new RegExp('&nbsp;', 'g');
-        num = num.replace( nbsp_regex, ' ');
+        num = num.replace( '&nbsp;', '' );
+        num = num.replace( ' ', '' );
+        num = num.replace( '&thinsp;', '' );
 
         // Determine what our existing separators are.
         var myArr = num.split('');

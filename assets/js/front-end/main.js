@@ -178,13 +178,13 @@ jQuery( document ).ready( function( $ ) {
 			},
 
 			encodeNumber: function(num) {
-				var localeConverter = new nfLocaleConverter(nfi18n.site_locale);
+				var localeConverter = new nfLocaleConverter(nfi18n.siteLocale, nfi18n.thousands_sep, nfi18n.decimal_point);
 
 				return localeConverter.numberEncoder(num);
 			},
 
 			decodeNumber: function(num) {
-				var localeConverter = new nfLocaleConverter(nfi18n.site_locale, nfi18n.thousands_sep);
+				var localeConverter = new nfLocaleConverter(nfi18n.siteLocale, nfi18n.thousands_sep, nfi18n.decimal_point);
 
 				return localeConverter.numberDecoder(num);
 			}
