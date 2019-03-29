@@ -470,15 +470,15 @@ define(['models/calcCollection'], function( CalcCollection ) {
 		localeDecodeEquation: function( eq ) {
 			var result = '';
 			var expression = '';
-			var pattern = new RegExp('/[0-9.,]/','g');
+			var pattern = /[0-9.,]/;
 			var localeConverter = new nfLocaleConverter();
 			// eq = str_replace( array('&nbsp;', '&thinsp;', ' '), '', eq );
 			eq = eq.replace( /&nbsp;|&thinsp;| /, '' );
 			var characters = eq.split('');
 			// foreach ( characters as character ) {
 			characters.forEach( function( character ) {
-				// If it matches the pattern...
-				if ( pattern.test( character ) ) {
+				// If the character is numeric or '.' or ','
+				if (pattern.test(character)) {
 					expression = expression + character;
 				} else {
 					// If we reach an operator char, append the expression to the result
@@ -491,7 +491,7 @@ define(['models/calcCollection'], function( CalcCollection ) {
 			});
 			// The following catches the case of the last character being a digit.
 			if ( 0 < expression.length ) {
-				$result = result + localeConverter.numberDecoder( expression );
+				result = result + localeConverter.numberDecoder( expression );
 			}
 			return result;
 		}
