@@ -475,8 +475,8 @@ define(['models/calcCollection'], function( CalcCollection ) {
 			var expression = '';
 			var pattern = /[0-9.,]/;
 			var localeConverter = new nfLocaleConverter(nfi18n.siteLocale, nfi18n.thousands_sep, nfi18n.decimal_point);
-			// eq = str_replace( array('&nbsp;', '&thinsp;', ' '), '', eq );
-			eq = eq.replace( /&nbsp;|&thinsp;| /, '' );
+			// This pattern accounts for all whitespace characters (including thin space).
+			eq = eq.replace( /\s/g, '' );
 			var characters = eq.split('');
 			// foreach ( characters as character ) {
 			characters.forEach( function( character ) {

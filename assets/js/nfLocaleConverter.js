@@ -28,13 +28,13 @@ var nfLocaleConverter = function(newLocale, thousands_sep, decimal_sep) {
         
         if ('-' === num.charAt(0)) {
             negative = true;
-            num = num.replace( '-', '');
+            num = num.replace( '-', '' );
         }
         
         // Account for a space as the thousands separator.
-        num = num.replace( '&nbsp;', '' );
-        num = num.replace( ' ', '' );
-        num = num.replace( '&thinsp;', '' );
+        // This pattern accounts for all whitespace characters (including thin space).
+        num = num.replace( /\s/g, '' );
+
 
         // Determine what our existing separators are.
         var myArr = num.split('');
