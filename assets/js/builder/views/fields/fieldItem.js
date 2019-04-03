@@ -32,8 +32,8 @@ define( ['views/app/itemControls', 'views/fields/preview/element', 'views/fields
 			this.itemControls.show( new itemControlsView( { model: this.model } ) );
 			jQuery( this.el ).disableSelection();
 
-			// Only show preview / realisitic fields when not `html`, `hidden`, or `note`.
-			var previewFieldTypeBlacklist = ['html', 'hidden', 'note'];
+			// Only show preview / realisitic fields when not `html`, `hidden`, `note`, or `recaptcha`.
+			var previewFieldTypeBlacklist = ['html', 'hidden', 'note', 'recaptcha'];
 			if(-1 == previewFieldTypeBlacklist.indexOf(this.model.get('type'))) {
 				this.previewElement.show( new previewElementView( { model: this.model } ) );
 			}

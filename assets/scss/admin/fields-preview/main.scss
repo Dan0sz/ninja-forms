@@ -27,7 +27,7 @@
     text-transform: uppercase;
 }
 
-.nf-field-wrap:not(.html):not(.hidden):not(.note) {
+.nf-field-wrap:not(.html):not(.hidden):not(.note):not(.recaptcha) { // Don't update field using placeholder.
     border: 1px solid transparent;
     transition: border-color .25s;
 
