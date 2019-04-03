@@ -15,7 +15,9 @@ class NF_Handlers_LocaleNumberFormatting
         return new self($wp_locale);
     }
 
-    public function locale_decode_number( string $number ) {
+    public function locale_decode_number( $number ) {
+        // Be sure we have a string.
+        $number = strval( $number );
 
         $thousands_sep = $this->locale->number_format['thousands_sep'];
 
@@ -68,7 +70,9 @@ class NF_Handlers_LocaleNumberFormatting
         return $formatted;
     }
 
-    public function locale_encode_number( string $number, $decimal = null, $thousand = null ) {
+    public function locale_encode_number( $number, $decimal = null, $thousand = null ) {
+        // Be sure we have a string.
+        $number = strval( $number );
         // Decode our input value.
         $number = $this->locale_decode_number( $number );
         // Exit early if NaN.
@@ -94,7 +98,9 @@ class NF_Handlers_LocaleNumberFormatting
         return number_format( $number, $precision, $decimal_point, $thousands_sep );
     }
 
-    public function locale_decode_equation( string $eq ) {
+    public function locale_decode_equation( $eq ) {
+        // Be sure we have a string.
+        $eq = strval( $eq );
         $result = '';
         $expression = '';
         $pattern = '/[0-9.,]/';
