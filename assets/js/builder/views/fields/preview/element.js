@@ -94,7 +94,11 @@ define( [], function() {
 					// ...
 				},
 				renderRatings: function() {
-					// ...
+					var ratingOutput = '';
+					for (var i = 0; i < this.number_of_stars; i++) {
+						ratingOutput += '<i class="fa fa-star" aria-hidden="true"></i>&nbsp;';
+					  }
+					return ratingOutput;
 				}
             }
         }
