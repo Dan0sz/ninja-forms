@@ -122,7 +122,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
             Ninja_Forms::template( 'fields-lastname.html' );
             Ninja_Forms::template( 'fields-listcheckbox.html' );
             Ninja_Forms::template( 'fields-listradio.html' );
-            Ninja_Forms::template( 'fields-listselect.html' );
+            Ninja_Forms::template( 'fields-listselect--builder.html' ); // Fork that removes the `for` attribute, which hijacks click events.
             Ninja_Forms::template( 'fields-number.html' );
             Ninja_Forms::template( 'fields-password.html' );
             Ninja_Forms::template( 'fields-recaptcha.html' );
