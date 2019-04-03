@@ -1,3 +1,7 @@
+.nf-item-controls {
+    z-index: 2;
+}
+
 .nf-realistic-field input[type="text"],
 .nf-realistic-field input[type="tel"],
 .nf-realistic-field input[type="email"] {
@@ -62,6 +66,9 @@
 .listselect,
 .listcountry,
 .liststate {
+    .nf-realistic-field .nf-realistic-field--label {
+        margin-bottom: 8px;
+    }
     .nf-realistic-field .nf-realistic-field--element select {
         border: 1px solid #c4c4c4;
         box-shadow: none;
