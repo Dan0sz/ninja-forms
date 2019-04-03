@@ -1,4 +1,5 @@
 .nf-realistic-field input[type="text"],
+.nf-realistic-field input[type="tel"],
 .nf-realistic-field input[type="email"] {
     width: 100%;
     max-width: 100%;
@@ -58,37 +59,42 @@
     border: 1px solid #c4c4c4!important;
 }
 
-.listselect .nf-realistic-field .nf-realistic-field--element select {
-    border: 1px solid #c4c4c4;
-    box-shadow: none;
-    appearance: none;
+.listselect,
+.listcountry,
+.liststate {
+    .nf-realistic-field .nf-realistic-field--element select {
+        border: 1px solid #c4c4c4;
+        box-shadow: none;
+        appearance: none;
+    }
+    .nf-realistic-field .nf-realistic-field--element > div {
+        position: relative;
+    }
+    .nf-realistic-field .nf-realistic-field--element select + div {
+        display: block;
+        position: absolute;
+        font-size: 16px;
+        line-height: 16px;
+        margin: 0;
+        padding: 16px;
+        height: 50px;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1;
+    }
+    .nf-realistic-field .nf-realistic-field--element select + div::after {
+        content: "\f078";
+        font-family: FontAwesome;
+        font-size: 20px;
+        position: absolute;
+        right: 10px;
+        bottom: 0;
+        height: 50px;
+        line-height: 50px;
+    }
 }
-.listselect .nf-realistic-field .nf-realistic-field--element > div {
-    position: relative;
-}
-.listselect .nf-realistic-field .nf-realistic-field--element select + div {
-    display: block;
-    position: absolute;
-    font-size: 16px;
-    line-height: 16px;
-    margin: 0;
-    padding: 16px;
-    height: 50px;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1;
-}
-.listselect .nf-realistic-field .nf-realistic-field--element select + div::after {
-    content: "\f078";
-    font-family: FontAwesome;
-    font-size: 20px;
-    position: absolute;
-    right: 10px;
-    bottom: 0;
-    height: 50px;
-    line-height: 50px;
-}
+
 
 @import "label-position/above";
 @import "label-position/below";
