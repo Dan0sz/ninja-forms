@@ -260,10 +260,15 @@ define( [], function() {
 				// Maintain origional visibility during drag/sort.
 				jQuery( ui.item ).show();
 
-				// Clone parent wrapper as new helper.
-				var newHelper = jQuery(ui.item).clone();
-				// var newHelper = jQuery(ui.item).parent().clone();
-				console.log(newHelper);
+				// Determine helper based on builder/layout type.
+				var $parentHelper = jQuery(ui.item).parent();
+				if($parentHelper.hasClass('layouts-cell')) {
+					// with Layout & Styles
+					var newHelper = $parentHelper.clone();
+				} else {
+					// Only core.
+					var newHelper = jQuery(ui.item).clone();
+				}
 
 				// Remove unecessary item controls from helper.
 				newHelper.find('.nf-item-controls').remove();
