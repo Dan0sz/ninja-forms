@@ -8,9 +8,7 @@ define( [], function() {
 		},
 
 		onRender: function() {
-			// Prevent label/input interaction by disassociating the label from the input.
-			jQuery(this.$el.find('label')).removeAttr('for');
-			return this;
+			// ...
 		},
         
 		templateHelpers: function () {

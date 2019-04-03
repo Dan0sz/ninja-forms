@@ -1,9 +1,15 @@
+.nf-realistic-field {
+    font-size: 18px!important;
+}
+
+
 .nf-realistic-field input[type="text"],
-.nf-realistic-field input[type="email"] {
+.nf-realistic-field input[type="email"],
+.nf-realistic-field select {
     width: 100%;
     max-width: 100%;
     background: #f9f9f9;
-    height: 50px;
+    height: 50px!important;
     padding: 12px;
     border: 0;
     color: #787878;
@@ -24,6 +30,32 @@
     color: #f7f7f7;
 }
 
+.nf-realistic-field input[type="checkbox"],
+.nf-realistic-field input[type="radio"] {
+    height: 20px;
+    width: 20px;
+}
+
+.nf-realistic-field .nf-realistic-field--element input[type="radio"] {
+    border-width: 2px!important;
+    background: #f7f7f7;
+    box-shadow: none;
+}
+
+.nf-realistic-field ul li {
+    display: flex;
+    margin-bottom: 12px;
+}
+.nf-realistic-field ul li input[type="checkbox"],
+.nf-realistic-field ul li input[type="radio"] {
+    padding: 12px;
+    margin-top: 4px;
+    margin-right: 5px;
+
+    & + div { // Faux-label element used in the builder.
+        margin-top: 6px; // Align the faux-label vertically.
+    }
+}
 
 .nf-field-wrap {
     background: #fff;

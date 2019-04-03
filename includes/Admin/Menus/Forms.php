@@ -103,7 +103,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
             Ninja_Forms::template( 'admin-menu-new-form.html.php' );
 
-            Ninja_Forms::template( 'fields-label.html' );
+            Ninja_Forms::template( 'fields-label--builder.html' ); // Fork for the builder.
 
             Ninja_Forms::template( 'fields-address.html' );
             Ninja_Forms::template( 'fields-address2.html' );
