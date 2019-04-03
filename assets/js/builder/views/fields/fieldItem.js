@@ -32,9 +32,15 @@ define( ['views/app/itemControls', 'views/fields/preview/element', 'views/fields
 			this.itemControls.show( new itemControlsView( { model: this.model } ) );
 			jQuery( this.el ).disableSelection();
 
-			this.previewElement.show( new previewElementView( { model: this.model } ) );
+			// Only show preview / realisitic fields when not `html`, `hidden`, or `note`.
+			var previewFieldTypeBlacklist = ['html', 'hidden', 'note'];
+			if(-1 == previewFieldTypeBlacklist.indexOf(this.model.get('type'))) {
+				this.previewElement.show( new previewElementView( { model: this.model } ) );
+			}
 
-			if('hidden' !== this.model.get('label_pos') && 'submit' !== this.model.get('type')){
+			// Only show the preview label when not `submit`.
+			var showLabelFieldTypeBlacklist = ['submit'];
+			if(-1 == showLabelFieldTypeBlacklist.indexOf(this.model.get('type'))) {
 				this.previewLabel.show( new previewLabelView( { model: this.model } ) );
 			}
 
