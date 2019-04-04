@@ -32,9 +32,19 @@ define( ['views/app/itemControls', 'views/fields/preview/element', 'views/fields
 			this.itemControls.show( new itemControlsView( { model: this.model } ) );
 			jQuery( this.el ).disableSelection();
 
+			var type = this.model.get('type');
+			if('phone' == type) type = 'tel';
+			if('spam' == type) type = 'input';
+			if('date' == type) type = 'input';
+			if('confirm' == type) type = 'input';
+			if('quantity' == type) type = 'number';
+			if('liststate' == type) type = 'listselect';
+			if('listcountry' == type) type = 'listselect';
+			if('listmultiselect' == type) type = 'listselect';
+
 			// Only show preview / realisitic fields when not `html`, `hidden`, `note`, or `recaptcha`.
 			var previewFieldTypeBlacklist = ['html', 'hidden', 'note', 'recaptcha'];
-			var isFieldTypeTemplateAvailable = jQuery('#tmpl-nf-field-' + this.model.get('type')).length;
+			var isFieldTypeTemplateAvailable = jQuery('#tmpl-nf-field-' + type).length;
 			if(-1 == previewFieldTypeBlacklist.indexOf(this.model.get('type')) && isFieldTypeTemplateAvailable) {
 				this.previewElement.show( new previewElementView( { model: this.model } ) );
 
