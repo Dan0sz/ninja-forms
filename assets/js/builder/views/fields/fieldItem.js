@@ -36,12 +36,14 @@ define( ['views/app/itemControls', 'views/fields/preview/element', 'views/fields
 			var previewFieldTypeBlacklist = ['html', 'hidden', 'note', 'recaptcha'];
 			if(-1 == previewFieldTypeBlacklist.indexOf(this.model.get('type'))) {
 				this.previewElement.show( new previewElementView( { model: this.model } ) );
-			}
 
-			// Only show the preview label when not `submit`, or `hr`.
-			var showLabelFieldTypeBlacklist = ['submit', 'hr'];
-			if(-1 == showLabelFieldTypeBlacklist.indexOf(this.model.get('type'))) {
-				this.previewLabel.show( new previewLabelView( { model: this.model } ) );
+				// Only show the preview label when not `submit`, or `hr`.
+				var showLabelFieldTypeBlacklist = ['submit', 'hr'];
+				if(-1 == showLabelFieldTypeBlacklist.indexOf(this.model.get('type'))) {
+					this.previewLabel.show( new previewLabelView( { model: this.model } ) );
+				}
+
+				jQuery( this.el ).find('.nf-placeholder-label').hide();
 			}
 
 			if ( nfRadio.channel( 'app' ).request( 'is:mobile' ) ) {
