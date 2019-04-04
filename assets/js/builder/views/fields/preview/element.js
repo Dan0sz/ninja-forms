@@ -71,7 +71,18 @@ define( [], function() {
 								return html += '<li><input type="radio"><div>' + option.get('label')  + '</div></li>';
 							}, '');
 						case 'listcountry':
-							return '<option>' + this.default + '</option>';
+							var defaultValue = this.default;
+							var defaultOption = window.fieldTypeData.find(function(data) {
+								return 'listcountry' == data.id;
+							}).settingGroups.find(function(group){
+								return 'primary' == group.id;
+							}).settings.find(function(setting){
+								return 'default' == setting.name;
+							}).options.find(function(option) {
+								return defaultValue == option.value;
+							});
+							var optionLabel = ('undefined' !== typeof defaultOption ) ? defaultOption.label : '--';
+							return '<option>' + optionLabel + '</option>';
 						default:
 							return '';
 					}
