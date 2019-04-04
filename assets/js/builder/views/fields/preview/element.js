@@ -20,7 +20,18 @@ define( [], function() {
 		},
 
 		onRender: function() {
-			// ...
+			if(this.model.get('container_class').includes('two-col-list')) {
+				jQuery(this.el).find('> ul').css('display', 'grid');
+				jQuery(this.el).find('> ul').css('grid-template-columns', 'repeat(2, 1fr)');
+			}
+			if(this.model.get('container_class').includes('three-col-list')) {
+				jQuery(this.el).find('> ul').css('display', 'grid');
+				jQuery(this.el).find('> ul').css('grid-template-columns', 'repeat(3, 1fr)');
+			}
+			if(this.model.get('container_class').includes('four-col-list')) {
+				jQuery(this.el).find('> ul').css('display', 'grid');
+				jQuery(this.el).find('> ul').css('grid-template-columns', 'repeat(4, 1fr)');
+			}
 		},
         
 		templateHelpers: function () {
