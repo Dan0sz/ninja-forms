@@ -34,7 +34,8 @@ define( ['views/app/itemControls', 'views/fields/preview/element', 'views/fields
 
 			// Only show preview / realisitic fields when not `html`, `hidden`, `note`, or `recaptcha`.
 			var previewFieldTypeBlacklist = ['html', 'hidden', 'note', 'recaptcha'];
-			if(-1 == previewFieldTypeBlacklist.indexOf(this.model.get('type'))) {
+			var isFieldTypeTemplateAvailable = jQuery('#tmpl-nf-field-' + this.model.get('type')).length;
+			if(-1 == previewFieldTypeBlacklist.indexOf(this.model.get('type')) && isFieldTypeTemplateAvailable) {
 				this.previewElement.show( new previewElementView( { model: this.model } ) );
 
 				// Only show the preview label when not `submit`, or `hr`.
