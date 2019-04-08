@@ -151,7 +151,7 @@ class NF_PromotionManager
 
     private function is_sendwp_active()
     {
-        if( class_exists( '\\SendWP\\Mailer' ) ) {
+        if( class_exists( '\\SendWP\\Mailer', FALSE ) ) {
             return true; 
         }
         return false; 
