@@ -73,12 +73,15 @@ class NF_PromotionManager
     /**************************************************************************
      * Promotion Removal Methods
      * 
-     * These funcitons all check to see if the individual add-ons that make up
-     * our personal membership are active. 
+     * These funcitons all check for different add-ons/products and remove
+     * promotions for them if they are in use. 
     ****************************************************************************/
     private function maybe_remove_sendwp()
     {
-        if( $this->is_sendwp_active() || phpversion() < '5.6.0' ) {
+        if( phpversion() < '5.6.0' ) {
+            $this->remove_promotion( 'sendwp' ); 
+            return; 
+        } elseif( $this->is_sendwp_active() ) {
             $this->remove_promotion( 'sendwp' );
         }
     }

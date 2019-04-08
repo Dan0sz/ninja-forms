@@ -1,6 +1,6 @@
 <?php
 
-return apply_filters( 'ninja-forms-promotions', array(
+return apply_filters( 'ninja-forms-dashboard-promotions', array(
 
 
   /*
@@ -56,7 +56,7 @@ return apply_filters( 'ninja-forms-promotions', array(
   |--------------------------------------------------------------------------
   |
   */
-
+  
   'sendwp-banner' => array(
     'id'      => 'sendwp-banner',
     'location'  => 'dashboard',
