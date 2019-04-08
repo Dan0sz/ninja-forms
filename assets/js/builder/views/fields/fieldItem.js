@@ -38,6 +38,7 @@ define( ['views/app/itemControls', 'views/fields/preview/element', 'views/fields
 			if('date' == type) type = 'input';
 			if('confirm' == type) type = 'input';
 			if('quantity' == type) type = 'number';
+			if('terms' == type) type = 'listcheckbox';
 			if('liststate' == type) type = 'listselect';
 			if('listcountry' == type) type = 'listselect';
 			if('listmultiselect' == type) type = 'listselect';

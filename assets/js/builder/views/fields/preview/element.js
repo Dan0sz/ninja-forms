@@ -6,12 +6,15 @@ define( [], function() {
 		initialize: function() {
 
 			var type = this.model.get('type');
+			
+			console.log(this.model);
 
 			if('phone' == type) type = 'tel';
 			if('spam' == type) type = 'input';
 			if('date' == type) type = 'input';
 			if('confirm' == type) type = 'input';
 			if('quantity' == type) type = 'number';
+			if('terms' == type) type = 'listcheckbox';
 			if('liststate' == type) type = 'listselect';
 			if('listcountry' == type) type = 'listselect';
 			if('listmultiselect' == type) type = 'listselect';
@@ -62,6 +65,26 @@ define( [], function() {
 				},
 				renderOptions: function() {
 					switch(this.type) {
+						case 'terms':
+
+							var taxonomyTerms = fieldTypeData.find(function(typeData){
+								return 'terms' == typeData.id;
+							}).settingGroups.find(function(settingGroup){
+								return 'primary' == settingGroup.id;
+							}).settings.find(function(setting){
+								return 'taxonomy_terms' == setting.name;
+							}).settings;
+
+							var attributes = Object.keys(this);
+							return attributes.reduce(function(html, attribute) {
+								if(0 == attribute.indexOf('taxonomy_term_') && this[attribute]) {
+									var term = taxonomyTerms.find(function(taxonomyTerm){
+										return attribute == taxonomyTerm.name;
+									});
+									html += '<li><input type="checkbox"><div>' + term.label  + '</div></li>';
+								}
+								return html;;
+							}.bind(this), '');
 						case 'liststate':
 						case 'listselect':
 							var options = this.options.models.filter(function(option){
