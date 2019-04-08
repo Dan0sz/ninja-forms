@@ -67,6 +67,10 @@ define( [], function() {
 					switch(this.type) {
 						case 'terms':
 
+							if( ! this.taxonomy ){
+								return '(No taxonomy selected)';
+							}
+
 							var taxonomyTerms = fieldTypeData.find(function(typeData){
 								return 'terms' == typeData.id;
 							}).settingGroups.find(function(settingGroup){
@@ -76,14 +80,19 @@ define( [], function() {
 							}).settings;
 
 							var attributes = Object.keys(this);
-							return attributes.reduce(function(html, attribute) {
-								if(0 == attribute.indexOf('taxonomy_term_') && this[attribute]) {
-									var term = taxonomyTerms.find(function(taxonomyTerm){
-										return attribute == taxonomyTerm.name;
-									});
-									html += '<li><input type="checkbox"><div>' + term.label  + '</div></li>';
-								}
-								return html;;
+							var enabledTaxonomyTerms = attributes.filter(function(attribute){
+								return 0 == attribute.indexOf('taxonomy_term_') && this[attribute];
+							}.bind(this));
+
+							if(0 == enabledTaxonomyTerms.length) {
+								return '(No available terms selected)';
+							}
+
+							return enabledTaxonomyTerms.reduce(function(html, enabledTaxonomyTerm) {
+								var term = taxonomyTerms.find(function(terms){
+									return enabledTaxonomyTerm == terms.name;
+								});
+								return html += '<li><input type="checkbox"><div>' + term.label  + '</div></li>';
 							}.bind(this), '');
 						case 'liststate':
 						case 'listselect':
