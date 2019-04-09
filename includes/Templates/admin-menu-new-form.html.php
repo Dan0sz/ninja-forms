@@ -171,7 +171,16 @@
             <span class="nf-field-label">{{{ _.escape( data.label ) }}} {{{ data.renderRequired() }}}</span>
         </div>
 
-        <div class="nf-realistic-field nf-realistic-field--label-{{{data.labelPosition()}}}" id="nf-field-{{{ data.getFieldID() }}}-wrap">
+        <#
+            var labelPosition = data.labelPosition();
+            console.log(labelPosition);
+            if( 'default' == labelPosition ){
+                labelPosition = Backbone.Radio.channel( 'settings' ).request( 'get:setting', 'default_label_pos' );
+            }
+            console.log(labelPosition);
+            console.log('----');
+        #>
+        <div class="nf-realistic-field nf-realistic-field--label-{{{labelPosition}}}" id="nf-field-{{{ data.getFieldID() }}}-wrap">
             <div class="nf-realistic-field--label"></div>
             <div class="nf-realistic-field--description">{{{ data.renderDescriptionText() }}}</div>
             <div class="nf-realistic-field--element" ></div>

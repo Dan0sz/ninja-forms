@@ -261,12 +261,11 @@ define( ['models/fields/fieldModel', 'views/fields/fieldItem'], function(FieldMo
 				jQuery( ui.item ).show();
 
 				// Determine helper based on builder/layout type.
-				var $parentHelper = jQuery(ui.item).parent();
-				if($parentHelper.hasClass('layouts-cell')) {
-					// with Layout & Styles
+				if(jQuery(ui.item).hasClass('nf-field-wrap')){
+					var newHelper = jQuery(ui.item).clone();
+				} else if(jQuery(ui.item).parent().hasClass('layouts-cell')) {
 					var newHelper = $parentHelper.clone();
 				} else {
-					// Only core.
 					var newHelper = jQuery(ui.item).clone();
 				}
 
@@ -275,9 +274,11 @@ define( ['models/fields/fieldModel', 'views/fields/fieldItem'], function(FieldMo
 
 				// Update helper with clone's content.
 				jQuery( ui.helper ).html( newHelper.html() );
+
+				jQuery( ui.helper ).css( 'opacity', '0.5' );
 				
 				// Add de-emphasize origional.
-				jQuery( ui.item ).css( 'opacity', '0.5' );
+				jQuery( ui.item ).css( 'opacity', '0.25' );
 			}
 			nfRadio.channel( 'fields' ).trigger( 'sortable:start', ui );
 		},
