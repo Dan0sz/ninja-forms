@@ -20,13 +20,7 @@ class NF_PromotionManager
 
     public function get_promotions()
     {
-        if ( apply_filters( 'ninja_forms_disable_marketing', false ) ) 
-        {
-            $this->promotions = array();
-            return $this->promotions;
-        } else {
-            return $this->promotions;
-        }
+        return $this->promotions;   
     }
 
     /**
@@ -34,7 +28,12 @@ class NF_PromotionManager
      */
     private function set_promotions()
     {
-        $this->promotions = Ninja_Forms()->config( 'DashboardPromotions' );
+        if ( apply_filters( 'ninja_forms_disable_marketing', false ) ) 
+        {
+            $this->promotions = array();
+        } else {
+            $this->promotions = Ninja_Forms()->config( 'DashboardPromotions' );
+        }
     }
 
     /**************************************************************************
