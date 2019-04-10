@@ -36,7 +36,7 @@
 } ) ( jQuery );
 
 jQuery( document ).ready( function( $ ) {
-	require( [ 'models/formCollection', 'models/formModel', 'models/fieldCollection', 'controllers/loadControllers', 'views/mainLayout'], function( formCollection, FormModel, FieldCollection, LoadControllers, mainLayout ) {
+	require( [ 'models/formCollection', 'models/formModel', 'models/fieldCollection', 'controllers/loadControllers', 'views/mainLayout', '../nfLocaleConverter'], function( formCollection, FormModel, FieldCollection, LoadControllers, mainLayout ) {
 
 		if( 'undefined' == typeof nfForms ) {
 			/*
@@ -66,11 +66,14 @@ jQuery( document ).ready( function( $ ) {
 					this.listenTo(nfRadio.channel('form-' + this.urlParameters.nf_resume), 'loaded', this.restart);
 				}
 
+				nfRadio.channel( 'app' ).reply( 'locale:decodeNumber', this.decodeNumber);
+
+				nfRadio.channel( 'app' ).reply( 'locale:encodeNumber',this.encodeNumber);
+
 				var loadControllers = new LoadControllers();
 				nfRadio.channel( 'app' ).trigger( 'after:loadControllers' );
 
-				nfRadio.channel( 'app' ).reply( 'get:template', this.template );
-			},
+				nfRadio.channel( 'app' ).reply( 'get:template', this.template );			},
 			
 			onStart: function() {
 				var formCollection = nfRadio.channel( 'app' ).request( 'get:forms' );
@@ -172,6 +175,18 @@ jQuery( document ).ready( function( $ ) {
 					escape:      /\{\{([^\}]+?)\}\}(?!\})/g,
 					variable:    'data'
 				} );
+			},
+
+			encodeNumber: function(num) {
+				var localeConverter = new nfLocaleConverter(nfi18n.siteLocale, nfi18n.thousands_sep, nfi18n.decimal_point);
+
+				return localeConverter.numberEncoder(num);
+			},
+
+			decodeNumber: function(num) {
+				var localeConverter = new nfLocaleConverter(nfi18n.siteLocale, nfi18n.thousands_sep, nfi18n.decimal_point);
+
+				return localeConverter.numberDecoder(num);
 			}
 		});
 	
