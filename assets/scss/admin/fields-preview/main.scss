@@ -113,6 +113,9 @@
     margin-top: 10px;
 }
 
+.checkbox .nf-realistic-field input:checked {
+    margin: 4px 5px 1px 0;
+}
 .checkbox .nf-realistic-field input:checked::before {
     content: "\f00c";
     font-family: FontAwesome;
