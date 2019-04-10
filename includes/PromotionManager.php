@@ -20,7 +20,13 @@ class NF_PromotionManager
 
     public function get_promotions()
     {
-        return $this->promotions;
+        if ( apply_filters( 'ninja_forms_disable_marketing', false ) ) 
+        {
+            $this->promotions = array();
+            return $this->promotions;
+        } else {
+            return $this->promotions;
+        }
     }
 
     /**
