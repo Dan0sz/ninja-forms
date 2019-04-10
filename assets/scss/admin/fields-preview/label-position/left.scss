@@ -9,7 +9,11 @@
         text-align: right;
         padding-top: 5px;
         padding-right: 10px;
-        overflow-wrap: break-word;
+        word-wrap: break-word;
+
+        .nf-field-label {
+            white-space: normal !important;
+        }
     }
 
     .nf-realistic-field--element {
