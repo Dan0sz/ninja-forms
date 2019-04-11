@@ -154,6 +154,22 @@ class NF_PromotionManager
         return false; 
     }
 
+    private function calculations_in_use()
+    {
+        global $wpdb;
+
+        $query = "SELECT id FROM `" . $wpdb->prefix . "nf3_form_meta` WHERE type = 'calculations'"; 
+        $fields = $wpdb->get_results( $query, 'ARRAY_A' ); 
+        
+        var_dump( $fields );
+
+        if( ! empty( $fields ) ) {
+            return true; 
+        }
+        return false; 
+
+    }
+
     private function is_sendwp_active()
     {
         if( class_exists( '\\SendWP\\Mailer', FALSE ) ) {
