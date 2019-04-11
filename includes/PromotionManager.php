@@ -44,22 +44,22 @@ class NF_PromotionManager
     ****************************************************************************/
     private function is_layout_styles_active()
     {
-        return class_exists( 'NF_Layouts' );
+        return class_exists( 'NF_Layouts', false );
     }
     
     private function is_conditional_logic_active()
     {
-        return class_exists( 'NF_ConditionalLogic' );
+        return class_exists( 'NF_ConditionalLogic', false );
     }
 
     private function is_multi_part_active()
     {
-        return class_exists( 'NF_MultiPart' );
+        return class_exists( 'NF_MultiPart', false );
     }
 
     private function is_file_uploads_active()
     {
-        return class_exists( 'NF_FU_File_Uploads ' );
+        return class_exists( 'NF_FU_File_Uploads', false );
     }
 
     /**
