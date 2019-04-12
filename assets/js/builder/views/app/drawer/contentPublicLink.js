@@ -17,9 +17,9 @@ define( ['views/app/drawer/itemSetting'], function( itemSettingView) {
 		},
 
 		onRender: function() {
-			var addSubmitSettingModel = nfRadio.channel( 'settings' ).request( 'get:settingModel', 'allow_public_link' );
-			var dataModel = nfRadio.channel( 'settings' ).request( 'get:settings' );
-			this.enablePublicLink.show( new itemSettingView( { model: addSubmitSettingModel, dataModel: dataModel } ) );
+			var allowPublicLinkSettingModel = nfRadio.channel( 'settings' ).request( 'get:settingModel', 'allow_public_link' );
+			var allowPublicLinkDataModel = nfRadio.channel( 'settings' ).request( 'get:settings' );
+			this.enablePublicLink.show( new itemSettingView( { model: allowPublicLinkSettingModel, dataModel: allowPublicLinkDataModel } ) );
 		},
 	} );
 
