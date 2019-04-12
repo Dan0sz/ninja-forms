@@ -5,7 +5,11 @@ class NF_Display_PagePublicLink extends NF_Display_Page
 	public function __construct($form_id)
 	{
 		$this->form_id = $form_id;
-		parent::__construct();
+		$this->form = Ninja_Forms()->form($this->form_id)->get();
+
+		if($this->form->get_setting('allow_public_link')) {
+			parent::__construct();
+		}
 	}
 
 	/**
