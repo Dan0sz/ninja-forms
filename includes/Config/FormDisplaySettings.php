@@ -44,6 +44,19 @@ return apply_filters( 'ninja_forms_form_display_settings', array(
         'help'  => __( 'If this box is checked, Ninja Forms will create a public link to access the form.', 'ninja-forms' ),
     ),
 
+    'public_link' => array(
+        'name' => 'public_link',
+        'type' => 'copytext',
+        'label' => __( 'Public link', 'ninja-forms' ),
+        'width' => 'full',
+        'group' => 'primary',
+        'value' => site_url('?nf_public_link=[FORM_ID]'),
+        'help'  => __( 'A public link to access the form.', 'ninja-forms' ),
+        'deps' => array(
+            'allow_public_link' => 1
+        ),
+    ),
+
     /*
     * CLEAR SUCCESSFULLY COMPLETED FORM
     */

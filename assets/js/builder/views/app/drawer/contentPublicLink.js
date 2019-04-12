@@ -13,14 +13,26 @@ define( ['views/app/drawer/itemSetting'], function( itemSettingView) {
         
 		regions: {
 			enablePublicLink: '.enable-public-link',
-			copyPublicLink: '.copy-public-link',
-		},
+            copyPublicLink: '.copy-public-link',
+        },
 
 		onRender: function() {
 			var allowPublicLinkSettingModel = nfRadio.channel( 'settings' ).request( 'get:settingModel', 'allow_public_link' );
-			var allowPublicLinkDataModel = nfRadio.channel( 'settings' ).request( 'get:settings' );
-			this.enablePublicLink.show( new itemSettingView( { model: allowPublicLinkSettingModel, dataModel: allowPublicLinkDataModel } ) );
+			var formSettingsDataModel = nfRadio.channel( 'settings' ).request( 'get:settings' );
+            this.enablePublicLink.show( new itemSettingView( { model: allowPublicLinkSettingModel, dataModel: formSettingsDataModel } ) );
+
+            var publicLinkSettingModel = nfRadio.channel( 'settings' ).request( 'get:settingModel', 'public_link' );
+            this.viewPublicLink.show(new itemSettingView( { model: publicLinkSettingModel, dataModel: formSettingsDataModel } ));
+        },
+        
+
+		events: {
+			'click .js-copy-public-link': 'copyPublicLink'
 		},
+
+		copyPublicLink: function( e ) {
+			// ...
+		}
 	} );
 
 	return view;
