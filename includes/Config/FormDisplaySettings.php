@@ -31,6 +31,20 @@ return apply_filters( 'ninja_forms_form_display_settings', array(
     ),
 
     /*
+    * ALLOW PUBLIC LINK
+    */
+
+    'allow_public_link' => array(
+        'name' => 'allow_public_link',
+        'type' => 'toggle',
+        'label' => __( 'Allow a pulic link?', 'ninja-forms' ),
+        'width' => 'full',
+        'group' => 'primary',
+        'value' => 0,
+        'help'  => __( 'If this box is checked, Ninja Forms will create a public link to access the form.', 'ninja-forms' ),
+    ),
+
+    /*
     * CLEAR SUCCESSFULLY COMPLETED FORM
     */
 
