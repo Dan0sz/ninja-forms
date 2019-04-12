@@ -37,7 +37,7 @@ return apply_filters( 'ninja_forms_form_display_settings', array(
     'allow_public_link' => array(
         'name' => 'allow_public_link',
         'type' => 'toggle',
-        'label' => __( 'Allow a pulic link?', 'ninja-forms' ),
+        'label' => __( 'Allow a public link?', 'ninja-forms' ),
         'width' => 'full',
         'group' => 'primary',
         'value' => 0,
