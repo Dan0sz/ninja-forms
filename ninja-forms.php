@@ -331,6 +331,17 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                 self::$instance->preview = new NF_Display_Preview();
 
                 /*
+                 * Public Form Link
+                 */
+                add_filter('template_include', function($template) {
+                    if(isset($_GET['nf_public_link'])){
+                        $form_id = absint($_GET['nf_public_link']);
+                        new NF_Display_PagePublicLink($form_id);
+                    }
+                    return $template;
+                });
+
+                /*
                  * Shortcodes
                  */
                 self::$instance->shortcodes = new NF_Display_Shortcodes();
