@@ -96,6 +96,7 @@
 <script id="tmpl-nf-app-header-action-button" type="text/template">
     {{{ data.renderPublish() }}}
     {{{ data.maybeRenderCancel() }}}
+    {{{ data.renderPublicLink() }}}
 </script>
 
 <script id="tmpl-nf-mobile-menu-button" type="text/template">
@@ -120,6 +121,9 @@
 
 <script id="tmpl-nf-app-header-view-changes" type="text/template">
     <a class="nf-cancel viewChanges" title="<?php _e( 'View Changes', 'ninja-forms' ); ?>" style="text-decoration: none;" href="#"><span class="dashicons dashicons-backup"></span></a>
+</script>
+<script id="tmpl-nf-app-header-public-link" type="text/template">
+    <a class="nf-public-link publicLink" title="<?php _e( 'Public Link', 'ninja-forms' ); ?>" style="text-decoration: none;" href="#"><span class="dashicons dashicons-admin-links"></span></a>
 </script>
 
 <script id="tmpl-nf-main" type="text/template">
@@ -288,6 +292,11 @@
     </tr>
 </script>
 
+<script id="tmpl-nf-drawer-content-public-link" type="text/template">
+    <div class="enable-public-link"></div>
+    <div class="copy-public-link"></div>
+</script>
+
 <script id="tmpl-nf-drawer-content-edit-settings" type="text/template">
     <span class="nf-setting-title"></span>
     <span class="nf-setting-groups"></span>
@@ -384,6 +393,12 @@
         <div>
             <a href="#" title="<?php _e( 'Undo All', 'ninja-forms' ); ?>" class="nf-button secondary undoChanges" style="float:left;" tabindex="-1"><span class="dashicons dashicons-backup"></span><?php _e( ' Undo All', 'ninja-forms' ); ?></a>
         </div>
+        <a href="#" title="<?php _e( 'Done', 'ninja-forms' ); ?>" class="nf-button primary nf-close-drawer" tabindex="-1"><?php _e( 'Done', 'ninja-forms' ); ?></a>
+    </header>
+</script>
+
+<script id="tmpl-nf-drawer-header-public-link" type="text/template">
+    <header class="nf-drawer-header">
         <a href="#" title="<?php _e( 'Done', 'ninja-forms' ); ?>" class="nf-button primary nf-close-drawer" tabindex="-1"><?php _e( 'Done', 'ninja-forms' ); ?></a>
     </header>
 </script>

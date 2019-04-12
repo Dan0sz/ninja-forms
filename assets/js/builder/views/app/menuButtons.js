@@ -77,6 +77,11 @@ define( [], function() {
 	    				return '';
 	    			}
 				},
+
+	    		renderPublicLink: function() {
+	    			var publicLink = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-app-header-public-link' );
+	    				return publicLink( this );
+	    		},
 			};
 		},
 
@@ -91,7 +96,8 @@ define( [], function() {
 		 */
 		events: {
 			'click .publish': 'clickPublish',
-			'click .viewChanges': 'clickViewChanges'
+			'click .viewChanges': 'clickViewChanges',
+			'click .publicLink': 'clickPublicLink',
 		},
 
 		/**
@@ -116,6 +122,10 @@ define( [], function() {
 		 */
 		clickViewChanges: function( e ) {
 			nfRadio.channel( 'app' ).trigger( 'click:viewChanges', e );
+		},
+
+		clickPublicLink: function( e ) {
+			nfRadio.channel( 'app' ).trigger( 'click:publicLink', e );
 		},
 
 		bounceIcon: function( changeModel ) {
