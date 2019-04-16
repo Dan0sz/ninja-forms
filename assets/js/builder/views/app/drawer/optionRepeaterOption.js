@@ -120,7 +120,10 @@ define( ['views/app/drawer/optionRepeaterError'], function( ErrorView ) {
 			var that = this;
 			return {
 				getColumns: function() {
-					return that.columns;
+					var columns = that.columns;
+					delete columns.value;
+					delete columns.calc;
+					return columns;
 				},
 				renderFieldSelect: function( dataID, value ){
 					var initialOption, select, emptyContainer, label;

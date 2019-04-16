@@ -47,6 +47,19 @@ define( ['views/app/drawer/itemSetting'], function( itemSettingView ) {
 			var that = this;
 	    	return {
 	    		renderVisible: function() {
+					console.log('renderVisible')
+					console.log(this);
+					console.log('/renderVisible')
+					console.log('')
+
+					if('help' == this.name) return 'style="display:none;"';
+					if('classes' == this.name) return 'style="display:none;"';
+					if('input_limit_set' == this.name) return 'style="display:none;"';
+
+					if('date' == that.dataModel.get('type')){
+						if('year_range' == this.name) return 'style="display:none;"';
+					}
+
 					if ( this.deps ) {
 						for (var name in this.deps) {
 						    if ( this.deps.hasOwnProperty( name ) ) {

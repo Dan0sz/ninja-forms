@@ -228,6 +228,26 @@ define( ['views/app/drawer/mergeTagsContent', 'views/app/drawer/settingError'], 
 	    	return {
 
 	    		renderVisible: function() {
+					console.log('renderVisible')
+					console.log(this);
+					console.log(that.dataModel);
+					console.log('/renderVisible')
+					console.log('')
+
+					if('input_limit' == this.name) return 'style="display:none;"';
+					if('help_text' == this.name) return 'style="display:none;"';
+					if('disable_input' == this.name) return 'style="display:none;"';
+					if('disable_browser_autocomplete' == this.name) return 'style="display:none;"';
+					if('mask' == this.name) return 'style="display:none;"';
+					if('custom_mask' == this.name) return 'style="display:none;"';
+					if('custom_name_attribute' == this.name) return 'style="display:none;"';
+					if('personally_identifiable' == this.name) return 'style="display:none;"';
+					
+					if('date' == that.dataModel.get('type')){
+						if('year_range_start' == this.name) return 'style="display:none;"';
+						if('year_range_end' == this.name) return 'style="display:none;"';
+					}
+
 					if ( this.deps ) {
 						for (var name in this.deps) {
 						    if ( this.deps.hasOwnProperty( name ) ) {

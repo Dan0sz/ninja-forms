@@ -173,6 +173,11 @@ define( ['views/app/drawer/optionRepeaterOption', 'views/app/drawer/optionRepeat
 	    			columns = document.createElement( 'span' );
 	    			columns.appendChild( beforeColumns );
 
+					console.log('COL HEADERS');
+					console.log(this.columns);
+					delete this.columns.value;
+					delete this.columns.calc;
+
 	    			_.each( this.columns, function( col ) {
 	    				var headerText, headerContainer;
 
@@ -211,6 +216,10 @@ define( ['views/app/drawer/optionRepeaterOption', 'views/app/drawer/optionRepeat
 				},
 
 				renderVisible: function() {
+					console.log('renderVisible Composite')
+					console.log(this);
+					console.log('/renderVisible Composite')
+					console.log('')
 					if ( this.deps ) {
 						for (var name in this.deps) {
 						    if ( this.deps.hasOwnProperty( name ) ) {
