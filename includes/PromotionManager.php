@@ -93,7 +93,7 @@ class NF_PromotionManager
 
     private function maybe_remove_ninja_shop()
     {
-        if( ! $this->product_fields_in_use() ) {
+        if( ! $this->product_fields_in_use() && ! $this->calculations_in_use() ) {
             $this->remove_promotion( 'ninja-shop' );
         }
     }
@@ -158,16 +158,14 @@ class NF_PromotionManager
     {
         global $wpdb;
 
-        $query = "SELECT id FROM `" . $wpdb->prefix . "nf3_form_meta` WHERE type = 'calculations'"; 
-        $fields = $wpdb->get_results( $query, 'ARRAY_A' ); 
-        
-        var_dump( $fields );
+        // TODO: change the key to meta_key once DB changes have been fully implemented. 
+        $query = "SELECT count( id ) as total FROM `" . $wpdb->prefix . "nf3_form_meta` WHERE  `key` = 'calculations' AND value <> 'a:0:{}'"; 
+        $calcs = $wpdb->get_row( $query, 'ARRAY_A' ); 
 
-        if( ! empty( $fields ) ) {
+        if( $calcs[ 'total' ] > 0 ) {
             return true; 
         }
-        return false; 
-
+        return false;
     }
 
     private function is_sendwp_active()
