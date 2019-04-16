@@ -329,7 +329,8 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
             'currencySymbols'   => array_merge( array( '' => Ninja_Forms()->get_setting( 'currency_symbol' ) ), Ninja_Forms::config( 'CurrencySymbol' ) ),
             'dateFormat'        => Ninja_Forms()->get_setting( 'date_format' ),
             'formID'            => isset( $_GET[ 'form_id' ] ) ? absint( $_GET[ 'form_id' ] ) : 0,
-            'home_url_host'     => $home_url[ 'host' ]
+            'home_url_host'     => $home_url[ 'host' ],
+            'devMode'          => Ninja_Forms()->get_setting( 'builder_dev_mode' ),
         ));
 
         do_action( 'nf_admin_enqueue_scripts' );
