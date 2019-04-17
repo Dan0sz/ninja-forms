@@ -65,17 +65,12 @@ define( [], function() {
 	    		},
 
 	    		/**
-	    		 * If our app isn't clean, render our 'viewChanges' button.
+	    		 * [DEPRECATED] If our app isn't clean, render our 'viewChanges' button.
 	    		 * @since  version
 	    		 * @return {[type]} [description]
 	    		 */
 	    		maybeRenderCancel: function() {
-	    			if ( ! nfRadio.channel( 'app' ).request( 'get:setting', 'clean' ) ) {
-	    				var viewChanges = nfRadio.channel( 'app' ).request( 'get:template',  '#tmpl-nf-app-header-view-changes' );
-	    				return viewChanges( this );
-	    			} else {
-	    				return '';
-	    			}
+					return '';
 				},
 			};
 		},
