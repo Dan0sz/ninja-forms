@@ -911,6 +911,9 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
 
             $form = Ninja_Forms::template( 'formtemplate-contactform.nff', array(), TRUE );
             Ninja_Forms()->form()->import_form( $form );
+
+            // Disable "Dev Mode" for new installation.
+            Ninja_Forms()->update_setting('builder_dev_mode', 0);
         }
 
         /**
