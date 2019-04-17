@@ -31,7 +31,23 @@ define( ['views/app/drawer/itemSetting'], function( itemSettingView) {
 		},
 
 		copyPublicLinkHandler: function( e ) {
-			// ...
+            // Make a helper element to hold the form link's string value
+            const { value } = document.getElementById('public_link');
+            const el = document.createElement('textarea');
+            el.value = value;
+
+            // Hide the helper element
+            el.setAttribute('readonly', '');
+            el.style.position = 'absolute';
+            el.style.left = '-10000px';
+
+            // Put the helper element on document, and copy its text content
+            document.body.appendChild(el);
+            el.select();
+
+           // Copy selected text to the clipboard and remove helper element
+           document.execCommand('copy');
+           document.body.removeChild(el);
 		}
 	} );
 
