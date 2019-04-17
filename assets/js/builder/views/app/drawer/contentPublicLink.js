@@ -22,15 +22,15 @@ define( ['views/app/drawer/itemSetting'], function( itemSettingView) {
             this.enablePublicLink.show( new itemSettingView( { model: allowPublicLinkSettingModel, dataModel: formSettingsDataModel } ) );
 
             var publicLinkSettingModel = nfRadio.channel( 'settings' ).request( 'get:settingModel', 'public_link' );
-            this.viewPublicLink.show(new itemSettingView( { model: publicLinkSettingModel, dataModel: formSettingsDataModel } ));
+            this.copyPublicLink.show(new itemSettingView( { model: publicLinkSettingModel, dataModel: formSettingsDataModel } ));
         },
         
 
 		events: {
-			'click .js-copy-public-link': 'copyPublicLink'
+			'click .js-copy-public-link': 'copyPublicLinkHandler'
 		},
 
-		copyPublicLink: function( e ) {
+		copyPublicLinkHandler: function( e ) {
 			// ...
 		}
 	} );
