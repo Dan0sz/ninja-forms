@@ -47,10 +47,6 @@ define( ['views/app/drawer/itemSetting'], function( itemSettingView ) {
 			var that = this;
 	    	return {
 	    		renderVisible: function() {
-					console.log('renderVisible')
-					console.log(this);
-					console.log('/renderVisible')
-					console.log('')
 
 					if('help' == this.name) return 'style="display:none;"';
 					if('classes' == this.name) return 'style="display:none;"';

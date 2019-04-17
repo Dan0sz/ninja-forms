@@ -228,11 +228,6 @@ define( ['views/app/drawer/mergeTagsContent', 'views/app/drawer/settingError'], 
 	    	return {
 
 	    		renderVisible: function() {
-					console.log('renderVisible')
-					console.log(this);
-					console.log(that.dataModel);
-					console.log('/renderVisible')
-					console.log('')
 
 					if(!nfAdmin.devMode){
 						if('Action' == that.dataModel.get('objectType') && 'email' == that.dataModel.get('type')){
