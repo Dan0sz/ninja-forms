@@ -56,6 +56,10 @@ define( ['views/app/drawer/itemSetting'], function( itemSettingView ) {
 					if('classes' == this.name) return 'style="display:none;"';
 					if('input_limit_set' == this.name) return 'style="display:none;"';
 
+					if('checkbox' == that.dataModel.get('type')){
+						if('checkbox_values' == this.name) return 'style="display:none;"';
+					}
+
 					if('date' == that.dataModel.get('type')){
 						if('year_range' == this.name) return 'style="display:none;"';
 					}

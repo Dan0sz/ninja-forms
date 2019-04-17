@@ -243,6 +243,21 @@ define( ['views/app/drawer/mergeTagsContent', 'views/app/drawer/settingError'], 
 					if('custom_name_attribute' == this.name) return 'style="display:none;"';
 					if('personally_identifiable' == this.name) return 'style="display:none;"';
 					
+					if('checkbox' == that.dataModel.get('type')){
+						if('checked_value' == this.name) return 'style="display:none;"';
+						if('unchecked_value' == this.name) return 'style="display:none;"';
+						if('checked_calc_value' == this.name) return 'style="display:none;"';
+						if('unchecked_calc_value' == this.name) return 'style="display:none;"';
+					}
+
+					if('starrating' == that.dataModel.get('type')){
+						if('default' == this.name) return 'style="display:none;"';
+					}
+
+					if('listmultiselect' == that.dataModel.get('type')){
+						if('box_size' == this.name) return 'style="display:none;"';
+					}
+
 					if('date' == that.dataModel.get('type')){
 						if('year_range_start' == this.name) return 'style="display:none;"';
 						if('year_range_end' == this.name) return 'style="display:none;"';

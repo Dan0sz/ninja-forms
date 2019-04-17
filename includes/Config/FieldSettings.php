@@ -675,7 +675,7 @@ return apply_filters( 'ninja_forms_field_settings', array(
         'type' => 'number',
         'label' => __( 'Multi-Select Box Size', 'ninja-forms'),
         'width' => 'one-half',
-        'group' => 'primary',
+        'group' => 'advanced',
         'value' => 5,
     ),
 
