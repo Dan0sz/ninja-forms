@@ -454,6 +454,8 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                     // Ensure all of our tables have been defined.
                     $migrations = new NF_Database_Migrations();
                     $migrations->migrate();
+
+                    self::$instance->flush_rewrite_rules();
                 }
             }
 
@@ -481,6 +483,20 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         public function init()
         {
             do_action( 'nf_init', self::$instance );
+
+            $this->register_rewrite_rules();
+        }
+
+        public function flush_rewrite_rules()
+        {
+            $this->register_rewrite_rules();
+            flush_rewrite_rules();
+        }
+
+        public function register_rewrite_rules()
+        {
+            add_rewrite_tag('%nf_public_link%', '([0-9]+)');
+            add_rewrite_rule('^ninja-forms/([0-9]+)/?', 'index.php?nf_public_link=$matches[1]', 'top');
         }
 
         public function admin_init()
@@ -912,6 +928,8 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
          * Activation
          */
         public function activation() {
+            $this->flush_rewrite_rules();
+
             $migrations = new NF_Database_Migrations();
             $migrations->migrate();
 
