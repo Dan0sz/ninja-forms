@@ -93,7 +93,7 @@ class NF_PromotionManager
 
     private function maybe_remove_ninja_shop()
     {
-        if( ! $this->product_fields_in_use() && ! $this->calculations_in_use() ) {
+        if( ! $this->are_product_fields_in_use() && ! $this->are_calculations_in_use() || $this->is_ninja_shop_active() ) {
             $this->remove_promotion( 'ninja-shop' );
         }
     }
@@ -141,7 +141,7 @@ class NF_PromotionManager
     /**
      * Checks the DB to see if product fields are being used. 
      */
-    private function product_fields_in_use()
+    private function are_product_fields_in_use()
     {
         global $wpdb;
 
@@ -154,7 +154,7 @@ class NF_PromotionManager
         return false; 
     }
 
-    private function calculations_in_use()
+    private function are_calculations_in_use()
     {
         global $wpdb;
 
@@ -165,6 +165,14 @@ class NF_PromotionManager
         if( $calcs[ 'total' ] > 0 ) {
             return true; 
         }
+        return false;
+    }
+
+    private function is_ninja_shop_active()
+    {
+        if( class_exists( 'IT_Exchange', FALSE ) ) {
+            return true;
+        } 
         return false;
     }
 
