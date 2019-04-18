@@ -17,8 +17,14 @@ define( ['views/app/drawer/itemSetting'], function( itemSettingView) {
         },
 
 		onRender: function() {
+            var formModel = Backbone.Radio.channel('app').request('get:formModel');
+            var formSettingsDataModel = nfRadio.channel( 'settings' ).request( 'get:settings' );
+            
+            var publicLink = formSettingsDataModel.get('public_link');
+            publicLink = publicLink.replace('[FORM_ID]', formModel.get('id'));
+            formSettingsDataModel.set('public_link', publicLink);
+            
 			var allowPublicLinkSettingModel = nfRadio.channel( 'settings' ).request( 'get:settingModel', 'allow_public_link' );
-			var formSettingsDataModel = nfRadio.channel( 'settings' ).request( 'get:settings' );
             this.enablePublicLink.show( new itemSettingView( { model: allowPublicLinkSettingModel, dataModel: formSettingsDataModel } ) );
 
             var publicLinkSettingModel = nfRadio.channel( 'settings' ).request( 'get:settingModel', 'public_link' );
