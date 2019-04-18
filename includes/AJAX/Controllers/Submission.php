@@ -74,12 +74,12 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
 
             $this->_form_cache = get_user_option( 'nf_form_preview_' . $this->_form_id );
 
-            if( ! $this->_form_cache ){
+            // if( ! $this->_form_cache ){
                 $this->_errors[ 'preview' ] = __( 'Preview does not exist.', 'ninja-forms' );
                 $this->_respond();
-            }
+            // }
         } else {
-            $this->_form_cache = WPN_Helper::get_nf_cache( $this->_form_id );
+            // $this->_form_cache = WPN_Helper::get_nf_cache( $this->_form_id );
         }
 
         // TODO: Update Conditional Logic to preserve field ID => [ Settings, ID ] structure.

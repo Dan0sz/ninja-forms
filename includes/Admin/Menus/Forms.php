@@ -341,11 +341,11 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
         if( ! $form->get_tmp_id() ) {
 
-            if( $form_cache = WPN_Helper::get_nf_cache( $form_id ) ) {
-                $fields = $form_cache[ 'fields' ];
-            } else {
+            // if( $form_cache = WPN_Helper::get_nf_cache( $form_id ) ) {
+            //     $fields = $form_cache[ 'fields' ];
+            // } else {
                 $fields = ($form_id) ? Ninja_Forms()->form($form_id)->get_fields() : array();
-            }
+            // }
             $actions = ($form_id) ? Ninja_Forms()->form($form_id)->get_actions() : array();
         } else {
             $fields = array();
@@ -364,7 +364,6 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
             foreach ($fields as $field) {
                 
                 $field_id = ( is_object( $field ) ) ? $field->get_id() : $field[ 'id' ];
-
                 /*
                  * Duplicate field check.
                  * TODO: Replace unique field key checks with a refactored model/factory.
@@ -451,11 +450,11 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
         // Use form cache for form settings.
         // TODO: Defer to refactor of factory/model.
-        if( isset( $form_cache[ 'settings' ] ) ) {
-            $form_data['settings'] = $form_cache[ 'settings' ];
-        } else {
+        // if( isset( $form_cache[ 'settings' ] ) ) {
+        //     $form_data['settings'] = $form_cache[ 'settings' ];
+        // } else {
             $form_data['settings'] = $form->get_settings();
-        }
+        // }
 
         $form_data['fields'] = $fields_settings;
         $form_data['actions'] = $actions_settings;
