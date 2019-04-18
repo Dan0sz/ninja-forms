@@ -31,23 +31,11 @@ define( ['views/app/drawer/itemSetting'], function( itemSettingView) {
 		},
 
 		copyPublicLinkHandler: function( e ) {
-            // Make a helper element to hold the form link's string value
-            var value = document.getElementById('public_link').value;
-            var el = document.createElement('textarea');
-            el.value = value;
 
-            // Hide the helper element
-            el.setAttribute('readonly', '');
-            el.style.position = 'absolute';
-            el.style.left = '-10000px';
+            document.getElementById('public_link').select();
+            document.execCommand('copy');
 
-            // Put the helper element on document, and copy its text content
-            document.body.appendChild(el);
-            el.select();
-
-           // Copy selected text to the clipboard and remove helper element
-           document.execCommand('copy');
-           document.body.removeChild(el);
+            e.target.innerHTML = 'Copied!';
 		}
 	} );
 
