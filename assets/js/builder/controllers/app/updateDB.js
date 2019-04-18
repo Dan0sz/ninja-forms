@@ -104,6 +104,21 @@ define( [], function() {
 			// Turn our formData model into an object
 			var data = JSON.parse( JSON.stringify( formData ) );
 			data.settings.formContentData = formContentData;
+			
+			// Generate a public link key
+			if ('publish' == action && (!data.settings.public_link_key)) {
+				// base 36 number, 8 digits long
+				var public_link_key = '';
+				for (var i = 0; i < 8; i++) {
+					var char = Math.random().toString(36).slice(-1);
+					public_link_key += char;
+				};
+				// Apply the public link key to settings
+				data.settings.public_link_key = public_link_key;
+				var formSettingsDataModel = nfRadio.channel( 'settings' ).request( 'get:settings' );
+				formSettingsDataModel.set('public_link_key', public_link_key);
+			}
+
 			/**
 			 * Prepare fields for submission.
 			 */
