@@ -32,8 +32,8 @@ define( ['views/app/drawer/itemSetting'], function( itemSettingView) {
 
 		copyPublicLinkHandler: function( e ) {
             // Make a helper element to hold the form link's string value
-            const { value } = document.getElementById('public_link');
-            const el = document.createElement('textarea');
+            var value = document.getElementById('public_link').value;
+            var el = document.createElement('textarea');
             el.value = value;
 
             // Hide the helper element
