@@ -86,7 +86,7 @@ class NF_PromotionManager
         if( phpversion() < '5.6.0' ) {
             $this->remove_promotion( 'sendwp' ); 
             return; 
-        } elseif( $this->is_sendwp_active() ) {
+        } if( $this->is_sendwp_active() ) {
             $this->remove_promotion( 'sendwp' );
         }
     }
@@ -178,7 +178,7 @@ class NF_PromotionManager
 
     private function is_sendwp_active()
     {
-        if( class_exists( '\\SendWP\\Mailer', FALSE ) ) {
+        if( class_exists( '\SendWP\Mailer', FALSE ) ) {
             return true; 
         }
         return false; 
