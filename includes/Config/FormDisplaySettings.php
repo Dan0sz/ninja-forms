@@ -47,7 +47,7 @@ return apply_filters( 'ninja_forms_form_display_settings', array(
     'public_link' => array(
         'name' => 'public_link',
         'type' => 'copytext',
-        'label' => __( 'Public link', 'ninja-forms' ),
+        'label' => __( 'Link To Your Form', 'ninja-forms' ),
         'width' => 'full',
         'group' => 'primary',
         'value' => site_url('?nf_public_link=[FORM_ID]'),
@@ -55,6 +55,16 @@ return apply_filters( 'ninja_forms_form_display_settings', array(
         'deps' => array(
             'allow_public_link' => 1
         ),
+    ),
+
+    'embed_form' => array(
+        'name' => 'embed_form',
+        'type' => 'copytext',
+        'label' => __( 'Embed Your Form', 'ninja-forms' ),
+        'width' => 'full',
+        'group' => 'primary',
+        'value' => site_url('?nf_public_link=[FORM_ID]'),
+        'help'  => __( 'The shortcode you can use to embed this form on a page or post.', 'ninja-forms' ),
     ),
 
     /*
