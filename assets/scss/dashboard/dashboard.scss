@@ -120,15 +120,17 @@ a:focus {
   }
   .nf-table-display {
 
+    td {
+      white-space:nowrap;
+    }
+
     td:nth-child(1) {
       width: 100%;
     }
 
-    td:nth-child(1),
     td:nth-child(2),
     td:nth-child(3) {
       width: 250px;
-      white-space:nowrap;
     }
 
     .title {
