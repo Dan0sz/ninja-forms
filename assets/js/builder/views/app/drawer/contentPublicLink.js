@@ -24,15 +24,10 @@ define( ['views/app/drawer/itemSetting'], function( itemSettingView) {
             var allowPublicLinkSettingModel = nfRadio.channel( 'settings' ).request( 'get:settingModel', 'allow_public_link' );
             this.enablePublicLink.show( new itemSettingView( { model: allowPublicLinkSettingModel, dataModel: formSettingsDataModel } ) );
             
-            console.log(formModel);
-            console.log(formModel.get('id'));
             var embedForm = "[ninja-forms id='{FORM_ID}']".replace('{FORM_ID}', formModel.get('id'));
-            console.log(embedForm);
             formSettingsDataModel.set('embed_form', embedForm);
 
             var embedFormSettingModel = nfRadio.channel( 'settings' ).request( 'get:settingModel', 'embed_form' );
-            console.log(embedFormSettingModel);
-            console.log(formSettingsDataModel);
             this.embedForm.show( new itemSettingView( { model: embedFormSettingModel, dataModel: formSettingsDataModel } ) );
 
             var public_link_key = formSettingsDataModel.get('public_link_key');
