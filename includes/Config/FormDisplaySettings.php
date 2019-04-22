@@ -50,7 +50,6 @@ return apply_filters( 'ninja_forms_form_display_settings', array(
         'label' => __( 'Link To Your Form', 'ninja-forms' ),
         'width' => 'full',
         'group' => 'primary',
-        'value' => site_url('?nf_public_link=[FORM_ID]'),
         'help'  => __( 'A public link to access the form.', 'ninja-forms' ),
         'deps' => array(
             'allow_public_link' => 1

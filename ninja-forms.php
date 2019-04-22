@@ -534,9 +534,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         }
 
         function maybe_load_public_form($template) {
-            if(isset($_GET['nf_public_link'])){
-                $public_link_key = sanitize_text_field($_GET['nf_public_link']);
-
+            if($public_link_key = sanitize_text_field(get_query_var('nf_public_link'))){
                 // @TODO Move this functionality behind a boundry.
                 global $wpdb;
                 $query = $wpdb->prepare( "SELECT `parent_id` FROM {$wpdb->prefix}nf3_form_meta WHERE `key` = 'public_link_key' AND `value` = %s", $public_link_key );
