@@ -294,6 +294,7 @@
 
 <script id="tmpl-nf-drawer-content-public-link" type="text/template">
     <h3><?php echo __('Display Your Form', 'ninja-forms'); ?></h3>
+    <div class="embed-form"></div>
     <div class="enable-public-link"></div>
     <div class="copy-public-link"></div>
 </script>
@@ -496,7 +497,7 @@ Label Three, value-three, 3
 <script id="tmpl-nf-edit-setting-copytext" type="text/template">
     <label style="position:relative;" for="{{{ data.name }}}" class="{{{ data.renderLabelClasses() }}}">{{{ data.label }}} {{{ data.renderTooltip() }}}
         <input type="text" class="setting" id="{{{ data.name }}}" value="{{{ data.value }}}" readonly="readonly" />
-        <button class="nf-button primary js-copy-public-link" style="position:absolute;top:50%;right:5px;padding:0px 15px;"><?php echo __('Copy', 'ninja-forms'); ?></button>
+        <button class="nf-button primary js-click-copytext" style="position:absolute;top:50%;right:5px;padding:0px 15px;"><?php echo __('Copy', 'ninja-forms'); ?></button>
     </label>
 </script>
 

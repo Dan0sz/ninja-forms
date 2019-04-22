@@ -12,6 +12,7 @@ define( ['views/app/drawer/itemSetting'], function( itemSettingView) {
         template: '#tmpl-nf-drawer-content-public-link',
         
 		regions: {
+            embedForm: '.embed-form',
 			enablePublicLink: '.enable-public-link',
             copyPublicLink: '.copy-public-link',
         },
@@ -23,6 +24,17 @@ define( ['views/app/drawer/itemSetting'], function( itemSettingView) {
             var allowPublicLinkSettingModel = nfRadio.channel( 'settings' ).request( 'get:settingModel', 'allow_public_link' );
             this.enablePublicLink.show( new itemSettingView( { model: allowPublicLinkSettingModel, dataModel: formSettingsDataModel } ) );
             
+            console.log(formModel);
+            console.log(formModel.get('id'));
+            var embedForm = "[ninja-forms id='{FORM_ID}']".replace('{FORM_ID}', formModel.get('id'));
+            console.log(embedForm);
+            formSettingsDataModel.set('embed_form', embedForm);
+
+            var embedFormSettingModel = nfRadio.channel( 'settings' ).request( 'get:settingModel', 'embed_form' );
+            console.log(embedFormSettingModel);
+            console.log(formSettingsDataModel);
+            this.embedForm.show( new itemSettingView( { model: embedFormSettingModel, dataModel: formSettingsDataModel } ) );
+
             var public_link_key = formSettingsDataModel.get('public_link_key');
             
             /**
@@ -40,8 +52,7 @@ define( ['views/app/drawer/itemSetting'], function( itemSettingView) {
             }
 
             // apply public link url to settings (ending with key)
-            var publicLink = formSettingsDataModel.get('public_link');
-            publicLink = publicLink.replace('[FORM_ID]', public_link_key);
+            var publicLink = nfAdmin.publicLinkStructure.replace('[FORM_ID]', public_link_key);
             formSettingsDataModel.set('public_link', publicLink);
             
             // Display public link
@@ -50,7 +61,16 @@ define( ['views/app/drawer/itemSetting'], function( itemSettingView) {
         },
 
 		events: {
-			'click .js-copy-public-link': 'copyPublicLinkHandler'
+			'click #embed_form + .js-click-copytext': 'copyFormEmbedHandler',
+			'click #public_link + .js-click-copytext': 'copyPublicLinkHandler'
+		},
+
+		copyFormEmbedHandler: function( e ) {
+
+            document.getElementById('embed_form').select();
+            document.execCommand('copy');
+
+            e.target.innerHTML = 'Copied!';
 		},
 
 		copyPublicLinkHandler: function( e ) {
