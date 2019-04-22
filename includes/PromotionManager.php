@@ -88,6 +88,8 @@ class NF_PromotionManager
             return; 
         } if( $this->is_sendwp_active() ) {
             $this->remove_promotion( 'sendwp' );
+        } elseif( $this->is_ninja_mail_active() ) {
+            $this->remove_promotion( 'sendwp' );
         }
     }
 
@@ -182,5 +184,13 @@ class NF_PromotionManager
             return true; 
         }
         return false; 
+    }
+
+    private function is_ninja_mail_active()
+    {
+        if( class_exists('\NinjaMail\Plugin', FALSE ) ) {
+            return true;
+        }
+        return false;
     }
 }

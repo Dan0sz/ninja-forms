@@ -649,12 +649,16 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
          */
         public function get_promotion_addons_lookup_table()
         {
+            // @TODO: Maybe use ninja_forms_addons_feed option to populate this later?
             $nf_promotion_addons = array(
-                'ninja-forms-conditional-logic', 
+                'ninja-forms-conditional-logic', // Account for development environments.
+                'ninja-forms-conditionals',
                 'ninja-forms-uploads', 
                 'ninja-forms-multi-part',
-                'ninja-forms-layout-styles',
+                'ninja-forms-layout-styles', // Account for development environments.
+                'ninja-forms-style',
                 'ninja-shop',
+                'ninja-mail', // Account for Ninja Mail as legacy for SendWP.
                 'sendwp'
             );
             return $nf_promotion_addons;
@@ -668,10 +672,8 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
          */
         public function nf_maybe_bust_promotion_cache( $promo_addons, $plugin_being_activated )
         {
-            foreach( $promo_addons as $addon ) {
-                if( $addon == $plugin_being_activated ) {
-                    $this->nf_run_promotion_manager();
-                }
+            if ( in_array( $plugin_being_activated, $promo_addons ) ) {
+                $this->nf_run_promotion_manager();
             }
 
         }
