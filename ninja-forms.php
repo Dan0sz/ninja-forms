@@ -333,20 +333,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                 /*
                  * Public Form Link
                  */
-                add_filter('template_include', function($template) {
-                    if(isset($_GET['nf_public_link'])){
-                        $public_link_key = sanitize_text_field($_GET['nf_public_link']);
-
-                        // @TODO Move this functionality behind a boundry.
-                        global $wpdb;
-                        $query = $wpdb->prepare( "SELECT `parent_id` FROM {$wpdb->prefix}nf3_form_meta WHERE `key` = 'public_link_key' AND `value` = %s", $public_link_key );
-                        $results = $wpdb->get_col($query);
-                        $form_id = reset($results);
-
-                        new NF_Display_PagePublicLink($form_id);
-                    }
-                    return $template;
-                });
+                add_filter('template_include', array(self::$instance, 'maybe_load_public_form'));
 
                 /*
                  * Shortcodes
@@ -544,6 +531,21 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                 // Record that there are no required updates.
                 update_option( 'ninja_forms_needs_updates', 0 );
             }
+        }
+
+        function maybe_load_public_form($template) {
+            if(isset($_GET['nf_public_link'])){
+                $public_link_key = sanitize_text_field($_GET['nf_public_link']);
+
+                // @TODO Move this functionality behind a boundry.
+                global $wpdb;
+                $query = $wpdb->prepare( "SELECT `parent_id` FROM {$wpdb->prefix}nf3_form_meta WHERE `key` = 'public_link_key' AND `value` = %s", $public_link_key );
+                $results = $wpdb->get_col($query);
+                $form_id = reset($results);
+
+                new NF_Display_PagePublicLink($form_id);
+            }
+            return $template;
         }
 
 	    /**
