@@ -312,7 +312,9 @@
             <li><a href="admin.php?page=ninja-forms&form_id={{{ data.id }}}"><?php _e( 'Edit', 'ninja-forms' ); ?></a></li>
             <li><a class="duplicate"><?php _e( 'Duplicate', 'ninja-forms' ); ?></a></li>
             <li><a href="<?php print( get_home_url() ); ?>/?nf_preview_form={{{ data.id }}}" target="_blank"><?php _e( 'Preview Form', 'ninja-forms' ); ?></a></li>
-            <li><a href="<?php echo get_home_url() . '?nf_public_link={{{ data.id }}}' ?>"><?php _e( 'Public Link', 'ninja-forms' ); ?></a></li>
+            <# if(data.public_link_key) { #>
+            <li><a href="<?php echo get_home_url() . '?nf_public_link={{{ data.public_link_key }}}' ?>"><?php _e( 'Public Link', 'ninja-forms' ); ?></a></li>
+            <# } #>
             <li><a href="edit.php?post_status=all&post_type=nf_sub&form_id={{{ data.id }}}" target="_blank"><?php _e( 'View Submissions', 'ninja-forms' ); ?></a></li>
             <li><a class="delete"><?php _e( 'Delete', 'ninja-forms' ); ?></a></li>
         </ul>
