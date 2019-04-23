@@ -263,24 +263,26 @@ class NF_Abstracts_Model
             }
         }
 
-        // if( ! $this->_settings ) {
-        //     $form_cache = WPN_Helper::get_nf_cache( $this->_parent_id );
-        //     if ($form_cache) {
+        if( ! $this->_settings ) {
+            if( WPN_Helper::use_cache() ) {
+                $form_cache = WPN_Helper::get_nf_cache( $this->_parent_id );
+                if ($form_cache) {
 
-        //         if ('field' == $this->_type) {
+                    if ('field' == $this->_type) {
 
-        //             if (isset($form_cache['fields'])) {
+                        if (isset($form_cache['fields'])) {
 
-        //                 foreach ($form_cache['fields'] as $object) {
-        //                     if ($this->_id != $object['id']) continue;
+                            foreach ($form_cache['fields'] as $object) {
+                                if ($this->_id != $object['id']) continue;
 
-        //                     $this->update_settings($object['settings']);
-        //                     break;
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
+                                $this->update_settings($object['settings']);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         // Only query if settings haven't been already queried or cache is FALSE.
         if( ! $this->_settings || ! $this->_cache ) {
@@ -496,7 +498,7 @@ class NF_Abstracts_Model
         $meta_data = $wpdb->get_results($meta_query, ARRAY_A);
 
         foreach($meta_data as $meta) {
-            $generic_object_array[$meta['parent_id']]->_settings[$meta['meta_key']] = $meta['meta_value'];
+            $generic_object_array[$meta['parent_id']]->_settings[$meta['meta_key']] = maybe_unserialize( $meta['meta_value'] );
         }
         $obj_array = array_values($generic_object_array);
 
@@ -847,9 +849,7 @@ class NF_Abstracts_Model
             $where_statement = "WHERE $where_statement";
         }
 
-        $sql_stm =  "SELECT DISTINCT $this->_table_name.id FROM $this->_table_name $join_statement $where_statement";
-
-        return $sql_stm;
+        return "SELECT DISTINCT $this->_table_name.id FROM $this->_table_name $join_statement $where_statement";
     }
 
 

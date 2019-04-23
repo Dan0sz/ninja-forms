@@ -491,4 +491,25 @@ final class WPN_Helper
         $wpdb->query( $sql );
     }
 
+    /**
+     * We'll use to determine if we need to use the form cache or not. This will
+     * be used for all users not on the newest version of the database
+     * 
+     * @return boolean
+     */
+    public function use_cache() {
+
+        $db_version = get_option('ninja_forms_db_version');
+
+        $cache_mode = get_option('ninja_forms_cache_mode');
+
+        if($cache_mode) return true;
+
+        if( ! $db_version || version_compare($db_version, '1.4', '<' )) {
+            return true;
+        }
+
+        return false;
+    }
+
 } // End Class WPN_Helper
