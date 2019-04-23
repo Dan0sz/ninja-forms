@@ -153,6 +153,9 @@ define( [], function() {
 					var attributes = [];
 					if('listmultiselect' == this.type) {
 						attributes.push('multiple');
+
+						var multi_size = this.multi_size || '5';
+						attributes.push('size="' + multi_size + '"');
 					}
 
 					return attributes.join(' ');
