@@ -102,10 +102,19 @@ define( [], function() {
 							}.bind(this), '');
 						case 'liststate':
 						case 'listselect':
+
+							// Check if there are any options.
+							if(0 == this.options.models.length) return '';
+
+							// Filter by :selected" options.
 							var options = this.options.models.filter(function(option){
 								return option.get('selected');
 							});
+
+							// If no option set as "selected", then reset the previous filter.
 							if(0 == options.length) options = this.options.models;
+
+							// Set the first option to display in the field preview.
 							return '<option>' + options[0].get('label') + '</option>';
 						case 'listmultiselect':
 							return this.options.models.reduce(function(html, option) {
