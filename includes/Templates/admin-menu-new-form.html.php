@@ -177,12 +177,9 @@
 
         <#
             var labelPosition = data.labelPosition();
-            console.log(labelPosition);
             if( 'default' == labelPosition ){
                 labelPosition = Backbone.Radio.channel( 'settings' ).request( 'get:setting', 'default_label_pos' );
             }
-            console.log(labelPosition);
-            console.log('----');
         #>
         <div class="nf-realistic-field nf-realistic-field--label-{{{labelPosition}}}" id="nf-field-{{{ data.getFieldID() }}}-wrap">
             <div class="nf-realistic-field--label"></div>
