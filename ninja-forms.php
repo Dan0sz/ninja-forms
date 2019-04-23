@@ -481,7 +481,6 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         public function init()
         {
             do_action( 'nf_init', self::$instance );
-<<<<<<< HEAD
 
             $this->register_rewrite_rules();
         }
@@ -496,9 +495,6 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         {
             add_rewrite_tag('%nf_public_link%', '([a-zA-Z0-9]+)');
             add_rewrite_rule('^ninja-forms/([a-zA-Z0-9]+)/?', 'index.php?nf_public_link=$matches[1]', 'top');
-=======
-            
->>>>>>> develop
         }
 
         public function admin_init()
