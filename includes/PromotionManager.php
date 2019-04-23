@@ -95,7 +95,7 @@ class NF_PromotionManager
 
     private function maybe_remove_ninja_shop()
     {
-        if( ! $this->are_product_fields_in_use() && ! $this->are_calculations_in_use() || $this->is_ninja_shop_active() ) {
+        if( ( ! $this->are_product_fields_in_use() && ! $this->are_calculations_in_use() ) || $this->is_ninja_shop_active() ) {
             $this->remove_promotion( 'ninja-shop' );
         }
     }
