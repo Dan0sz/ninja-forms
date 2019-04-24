@@ -503,7 +503,7 @@ final class WPN_Helper
 
         $cache_mode = intval( get_option('ninja_forms_cache_mode') );
 
-        if( 0 > $cache_mode ) return true;
+        if( 0 < $cache_mode ) return true;
 
         if( ! $db_version || version_compare($db_version, '1.4', '<' )) {
             return true;
