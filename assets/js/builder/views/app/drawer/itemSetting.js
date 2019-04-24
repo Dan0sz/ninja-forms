@@ -244,6 +244,8 @@ define( ['views/app/drawer/mergeTagsContent', 'views/app/drawer/settingError'], 
 
 						if('label_pos' == this.name) return 'style="display:none;"';
 						if('input_limit' == this.name) return 'style="display:none;"';
+						if('input_limit_type' == this.name) return 'style="display:none;"';
+						if('input_limit_msg' == this.name) return 'style="display:none;"';
 						if('help_text' == this.name) return 'style="display:none;"';
 						if('disable_input' == this.name) return 'style="display:none;"';
 						if('disable_browser_autocomplete' == this.name) return 'style="display:none;"';
