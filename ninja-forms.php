@@ -13,7 +13,6 @@ Copyright 2016 WP Ninjas.
 */
 
 require_once dirname( __FILE__ ) . '/lib/NF_VersionSwitcher.php';
-require_once dirname( __FILE__ ) . '/lib/NF_FeatureFlags.php';
 require_once dirname( __FILE__ ) . '/lib/NF_Tracking.php';
 require_once dirname( __FILE__ ) . '/lib/NF_Conversion.php';
 require_once dirname( __FILE__ ) . '/lib/NF_ExceptionHandlerJS.php';
