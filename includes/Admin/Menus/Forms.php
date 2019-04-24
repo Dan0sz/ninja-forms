@@ -321,8 +321,13 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         if(isset($_GET['nf_dev_mode']) && $_GET['nf_dev_mode']){
             $dev_mode = absint($_GET['nf_dev_mode']);
         } else {
-            $dev_mode = Ninja_Forms()->get_setting( 'builder_dev_mode' );
-            if(0 !== $dev_mode) $dev_mode = 1; // If not THE SAME AS 0, then 1.
+            // @NOTE Check the settings array to avoid a default value in place of zero.
+            $settings = Ninja_Forms()->get_settings();
+            if( ! isset($settings['builder_dev_mode'])){
+                $dev_mode = 1;
+            } else {
+                $dev_mode = $settings['builder_dev_mode'];
+            }
         }
 
         wp_localize_script( 'nf-builder', 'nfAdmin', array(
@@ -337,7 +342,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
             'dateFormat'        => Ninja_Forms()->get_setting( 'date_format' ),
             'formID'            => isset( $_GET[ 'form_id' ] ) ? absint( $_GET[ 'form_id' ] ) : 0,
             'home_url_host'     => $home_url[ 'host' ],
-            'devMode'           => $dev_mode,
+            'devMode'           => (bool) $dev_mode,
         ));
 
         do_action( 'nf_admin_enqueue_scripts' );
