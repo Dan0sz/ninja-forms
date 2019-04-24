@@ -161,10 +161,14 @@ define( ['views/app/drawer/optionRepeaterOption', 'views/app/drawer/optionRepeat
                         helpTextWrapper.appendChild( helpIconLink );
                         helpTextWrapper.appendChild( helpTextContainer );
 
-                        // Append the help text to the 'value' header.
-	                    if ( -1 == that.model.get('columns').value.header.indexOf( helpTextWrapper.innerHTML ) ) {
-		                    that.model.get('columns').value.header += helpTextWrapper.innerHTML;
-	                    }
+						// Append the help text to the 'value' header.
+						if('undefined' !== typeof that.model.get('columns') ){
+							if('undefined' !== typeof that.model.get('columns').value ){
+								if ( -1 == that.model.get('columns').value.header.indexOf( helpTextWrapper.innerHTML ) ) {
+									that.model.get('columns').value.header += helpTextWrapper.innerHTML;
+								}
+							}
+						}
                     }
 	    			var columns, beforeColumns, afterColumns;
 
