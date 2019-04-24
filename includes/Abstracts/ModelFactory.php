@@ -67,11 +67,13 @@ class NF_Abstracts_ModelFactory
 
         $this->_object = $this->_form = new NF_Database_Models_Form( $this->_db, $id );
 
-        // $form_cache = WPN_Helper::get_nf_cache( $id );
+        if(WPN_Helper::use_cache()) {
+            $form_cache = WPN_Helper::get_nf_cache( $id );
 
-        // if( $form_cache && isset ( $form_cache[ 'settings' ] ) ){
-        //     $this->_object->update_settings( $form_cache[ 'settings' ] );
-        // }
+            if( $form_cache && isset ( $form_cache[ 'settings' ] ) ){
+                $this->_object->update_settings( $form_cache[ 'settings' ] );
+            }
+        }
 
         return $this;
     }
@@ -230,9 +232,13 @@ class NF_Abstracts_ModelFactory
 
         if( $where || $fresh || ! $this->_fields ){
 
-            // $form_cache = WPN_Helper::get_nf_cache( $form_id );
+            if(WPN_Helper::use_cache() ) {
+                $form_cache = WPN_Helper::get_nf_cache( $form_id );
+            } else {
+                $form_cache = false;
+            }
 
-            // if( ! $form_cache ) {
+            if( ! $form_cache ) {
                 $model_shell = new NF_Database_Models_Field($this->_db, 0);
 
                 $fields = $model_shell->find($form_id, $where);
@@ -241,14 +247,14 @@ class NF_Abstracts_ModelFactory
                     $this->_fields[$field->get_id()] = $field;
                     $field_by_key[ $field->get_setting( 'key' ) ] = $field;
                 }
-            // } else {
-            //     foreach( $form_cache[ 'fields' ] as $cached_field ){
-            //         $field = new NF_Database_Models_Field( $this->_db, $cached_field[ 'id' ], $form_id );
-            //         $field->update_settings( $cached_field[ 'settings' ] );
-            //         $this->_fields[$field->get_id()] = $field;
-            //         $field_by_key[ $field->get_setting( 'key' ) ] = $field;
-            //     }
-            // }
+            } else {
+                foreach( $form_cache[ 'fields' ] as $cached_field ){
+                    $field = new NF_Database_Models_Field( $this->_db, $cached_field[ 'id' ], $form_id );
+                    $field->update_settings( $cached_field[ 'settings' ] );
+                    $this->_fields[$field->get_id()] = $field;
+                    $field_by_key[ $field->get_setting( 'key' ) ] = $field;
+                }
+            }
 
             /*
              * If a filter is registered to modify field order, then use that filter.

@@ -338,14 +338,19 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
     private function _localize_form_data( $form_id )
     {
         $form = Ninja_Forms()->form( $form_id )->get();
+        $form_cache = false;
 
         if( ! $form->get_tmp_id() ) {
 
-            // if( $form_cache = WPN_Helper::get_nf_cache( $form_id ) ) {
-            //     $fields = $form_cache[ 'fields' ];
-            // } else {
+            if(WPN_Helper::use_cache()) {
+                $form_cache = WPN_Helper::get_nf_cache( $form_id );
+            } 
+
+            if( $form_cache ) {
+                $fields = $form_cache[ 'fields' ];
+            } else {
                 $fields = ($form_id) ? Ninja_Forms()->form($form_id)->get_fields() : array();
-            // }
+            }
             $actions = ($form_id) ? Ninja_Forms()->form($form_id)->get_actions() : array();
         } else {
             $fields = array();
@@ -450,11 +455,11 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
 
         // Use form cache for form settings.
         // TODO: Defer to refactor of factory/model.
-        // if( isset( $form_cache[ 'settings' ] ) ) {
-        //     $form_data['settings'] = $form_cache[ 'settings' ];
-        // } else {
+        if( $form_cache && isset( $form_cache[ 'settings' ] ) ) {
+            $form_data['settings'] = $form_cache[ 'settings' ];
+        } else {
             $form_data['settings'] = $form->get_settings();
-        // }
+        }
 
         $form_data['fields'] = $fields_settings;
         $form_data['actions'] = $actions_settings;

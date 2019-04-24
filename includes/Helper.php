@@ -497,7 +497,7 @@ final class WPN_Helper
      * 
      * @return boolean
      */
-    public function use_cache() {
+    public static function use_cache() {
 
         $db_version = get_option('ninja_forms_db_version');
 

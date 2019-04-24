@@ -479,7 +479,10 @@ class NF_Abstracts_Model
             // Instantiate a new object for each ID
             $results[] = $object = new $class( $this->_db, $id, $parent_id );
         }
-        $results = $this->get_object_settings($results);
+
+        if( ! WPN_Helper::use_cache() ) {
+            $results = $this->get_object_settings($results);
+        }
         // Return an array of objects
         return $results;
     }
@@ -493,12 +496,28 @@ class NF_Abstracts_Model
             $generic_object_array[$obj->get_id()] = $obj;
         }
         
-        $meta_query = "SELECT * FROM {$this->_meta_table_name} WHERE parent_id in (" . implode(',', $id_array) . ")";
+        if( 0 < count($id_array) ) {
+            $obj_query = "SELECT `id`, `" . implode( '`, `', $this->_columns) . "` FROM {$this->_table_name} WHERE id IN (" . implode(',', $id_array) . ")";
 
-        $meta_data = $wpdb->get_results($meta_query, ARRAY_A);
 
-        foreach($meta_data as $meta) {
-            $generic_object_array[$meta['parent_id']]->_settings[$meta['meta_key']] = maybe_unserialize( $meta['meta_value'] );
+            $table_data = $wpdb->get_results($obj_query, ARRAY_A);
+
+            foreach($table_data as $data_item) {
+                foreach($data_item as $label => $val ) {
+                    $generic_object_array[$data_item['id']]->_settings[$label] = maybe_unserialize( $val );
+                }
+            }
+        
+            $meta_query = "SELECT * FROM {$this->_meta_table_name} WHERE parent_id IN (" . implode(',', $id_array) . ")";
+
+            $meta_data = $wpdb->get_results($meta_query, ARRAY_A);
+
+            foreach($meta_data as $meta) {
+
+                if( ! isset($generic_object_array[$meta['parent_id']]->_settings[$meta['meta_key']])) {
+                    $generic_object_array[$meta['parent_id']]->_settings[$meta['meta_key']] = maybe_unserialize( $meta['meta_value'] );
+                }
+            }
         }
         $obj_array = array_values($generic_object_array);
 
