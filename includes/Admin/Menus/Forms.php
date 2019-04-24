@@ -321,7 +321,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         if(isset($_GET['nf_dev_mode']) && $_GET['nf_dev_mode']){
             $dev_mode = absint($_GET['nf_dev_mode']);
         } else {
-            $dev_mode = Ninja_Forms()->get_setting( 'builder_dev_mode' );
+            $dev_mode = Ninja_Forms()->get_setting( 'builder_dev_mode', 1 );
         }
 
         wp_localize_script( 'nf-builder', 'nfAdmin', array(
