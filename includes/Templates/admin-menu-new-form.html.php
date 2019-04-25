@@ -240,6 +240,11 @@
         <span class="dashicons dashicons-admin-collapse"></span><span class="nf-expand-off"><?php _e( 'Full screen', 'ninja-forms' ); ?></span><span class="nf-expand-on"><?php _e( 'Half screen', 'ninja-forms' ); ?></span>
     </a>
     <span id="nf-drawer-footer"></span>
+    <# if(1 != nfAdmin.devMode){ #>
+    <div style="padding:20px;opacity:.5;text-align:center;">
+        For more powerful features, <a href="<?php echo add_query_arg('page', 'nf-settings', admin_url('admin.php')); ?>#ninja_forms[builder_dev_mode]">enable Developer Mode</a>.
+    </div>
+    <# } #>
 </script>
 
 <script id="tmpl-nf-drawer-content-add-field" type="text/template">
