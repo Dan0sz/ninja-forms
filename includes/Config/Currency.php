@@ -42,7 +42,7 @@ return apply_filters( 'ninja_forms_currency', array(
         'value' => 'MXN'
     ),
     'MYR' => array(
-        'lable' => __( 'Malaysian Ringgit', 'ninja-forms' ),
+        'label' => __( 'Malaysian Ringgit', 'ninja-forms' ),
         'value' => 'MYR'
     ),
     'NOK' => array(
