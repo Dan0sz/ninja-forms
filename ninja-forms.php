@@ -443,6 +443,12 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                     // Ensure all of our tables have been defined.
                     $migrations = new NF_Database_Migrations();
                     $migrations->migrate();
+
+                    // Enable "Dev Mode" for existing installations.
+                    $settings = Ninja_Forms()->get_settings();
+                    if( ! isset($settings['builder_dev_mode'])){
+                        Ninja_Forms()->update_setting('builder_dev_mode', 1);
+                    } 
                 }
             }
 
