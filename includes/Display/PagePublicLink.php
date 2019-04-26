@@ -28,7 +28,7 @@ class NF_Display_PagePublicLink extends NF_Display_Page
 	 */
     public function get_title()
     {
-        return 'Ninja Forms Public Form';
+        return ''; // Public form pages should not have visible page titles
     }
 
 	/**

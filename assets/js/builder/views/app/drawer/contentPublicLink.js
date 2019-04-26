@@ -20,31 +20,40 @@ define( ['views/app/drawer/itemSetting'], function( itemSettingView) {
 		onRender: function() {
             var formModel = Backbone.Radio.channel('app').request('get:formModel');
             var formSettingsDataModel = nfRadio.channel( 'settings' ).request( 'get:settings' );
+
+            var allowPublicLinkSettingModel = nfRadio.channel( 'settings' ).request( 'get:settingModel', 'allow_public_link' );
+            this.enablePublicLink.show( new itemSettingView( { model: allowPublicLinkSettingModel, dataModel: formSettingsDataModel } ) );
             
-            console.log(formModel);
-            console.log(formModel.get('id'));
             var embedForm = "[ninja-forms id='{FORM_ID}']".replace('{FORM_ID}', formModel.get('id'));
-            console.log(embedForm);
             formSettingsDataModel.set('embed_form', embedForm);
 
             var embedFormSettingModel = nfRadio.channel( 'settings' ).request( 'get:settingModel', 'embed_form' );
-            console.log(embedFormSettingModel);
-            console.log(formSettingsDataModel);
             this.embedForm.show( new itemSettingView( { model: embedFormSettingModel, dataModel: formSettingsDataModel } ) );
 
             var public_link_key = formSettingsDataModel.get('public_link_key');
-            if (!public_link_key) return;
+            
+            /**
+             * Generate a public link key which is follows the format:
+             * Form Id + 4 consecutive base 36 numbers
+             */
+            if (!public_link_key) {
+                var public_link_key = formModel.get('id');
+                for (var i = 0; i < 4; i++) {
+                    var char = Math.random().toString(36).slice(-1);
+                    public_link_key += char;
+                };
+                // Apply the public link key to form settings
+                formSettingsDataModel.set('public_link_key', public_link_key);
+            }
 
+            // apply public link url to settings (ending with key)
             var publicLink = nfAdmin.publicLinkStructure.replace('[FORM_ID]', public_link_key);
             formSettingsDataModel.set('public_link', publicLink);
             
-			var allowPublicLinkSettingModel = nfRadio.channel( 'settings' ).request( 'get:settingModel', 'allow_public_link' );
-            this.enablePublicLink.show( new itemSettingView( { model: allowPublicLinkSettingModel, dataModel: formSettingsDataModel } ) );
-
+            // Display public link
             var publicLinkSettingModel = nfRadio.channel( 'settings' ).request( 'get:settingModel', 'public_link' );
             this.copyPublicLink.show(new itemSettingView( { model: publicLinkSettingModel, dataModel: formSettingsDataModel } ));
         },
-        
 
 		events: {
 			'click #embed_form + .js-click-copytext': 'copyFormEmbedHandler',
