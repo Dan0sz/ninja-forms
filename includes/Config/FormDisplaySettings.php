@@ -39,7 +39,7 @@ return apply_filters( 'ninja_forms_form_display_settings', array(
         'type' => 'toggle',
         'label' => __( 'Allow a public link?', 'ninja-forms' ),
         'width' => 'full',
-        'group' => 'primary',
+        'group' => '',
         'value' => 0,
         'help'  => __( 'If this box is checked, Ninja Forms will create a public link to access the form.', 'ninja-forms' ),
     ),
@@ -49,7 +49,7 @@ return apply_filters( 'ninja_forms_form_display_settings', array(
         'type' => 'copytext',
         'label' => __( 'Link To Your Form', 'ninja-forms' ),
         'width' => 'full',
-        'group' => 'primary',
+        'group' => '',
         'help'  => __( 'A public link to access the form.', 'ninja-forms' ),
         'deps' => array(
             'allow_public_link' => 1
@@ -61,7 +61,7 @@ return apply_filters( 'ninja_forms_form_display_settings', array(
         'type' => 'copytext',
         'label' => __( 'Embed Your Form', 'ninja-forms' ),
         'width' => 'full',
-        'group' => 'primary',
+        'group' => '',
         'value' => '',
         'help'  => __( 'The shortcode you can use to embed this form on a page or post.', 'ninja-forms' ),
     ),
