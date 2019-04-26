@@ -96,6 +96,14 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
             $this->_form_cache = WPN_Helper::get_nf_cache( $this->_form_id );
         }
 
+        // Add Field Keys to _form_data
+        if(! $this->is_preview()){
+            $form_fields = Ninja_Forms()->form($this->_form_id)->get_fields();
+            foreach ($form_fields as $id => $field) {
+                $this->_form_data['fields'][$id]['key'] = $field->get_settings()['key'];
+            }
+        }
+
         // TODO: Update Conditional Logic to preserve field ID => [ Settings, ID ] structure.
         $this->_form_data = apply_filters( 'ninja_forms_submit_data', $this->_form_data );
 
