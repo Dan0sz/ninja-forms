@@ -24,6 +24,7 @@ define( [], function() {
 			if('liststate' == type) type = 'listselect';
 			if('listcountry' == type) type = 'listselect';
 			if('listmultiselect' == type) type = 'listselect';
+			if('save' == type) type = 'submit';
 
 			this.template = '#tmpl-nf-field-' + type;
 		},
