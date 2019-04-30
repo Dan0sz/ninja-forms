@@ -268,6 +268,7 @@ return apply_filters( 'ninja_forms_field_settings', array(
             'mask'      => 'custom'
         ),
         'placeholder'   => '',
+        'isHTML'        => true,
         'help'  => __( '<ul>
                             <li>a - Represents an alpha character (A-Z,a-z) - Only allows letters to be entered. </li>
                             <li>9 - Represents a numeric character (0-9) - Only allows numbers to be entered.</li>

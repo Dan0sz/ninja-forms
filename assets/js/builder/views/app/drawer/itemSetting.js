@@ -281,7 +281,13 @@ define( ['views/app/drawer/mergeTagsContent', 'views/app/drawer/settingError'], 
 					if ( ! this.help ) return '';
 					var helpText, helpTextContainer, helpIcon, helpIconLink, helpTextWrapper;
 
-					helpText = document.createTextNode( this.help );
+					if ( this.isHTML ) {
+						helpText = document.createElement( 'div' );
+						helpText.innerHTML = this.help;
+					} else {
+						helpText = document.createTextNode( this.help );
+					}
+
 					helpTextContainer = document.createElement( 'div' );
 					helpTextContainer.classList.add( 'nf-help-text' );
 					helpTextContainer.appendChild( helpText );
