@@ -1007,7 +1007,6 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
          * Activation
          */
         public function activation() {
-            $this->flush_rewrite_rules();
 
             $migrations = new NF_Database_Migrations();
             $migrations->migrate();
@@ -1019,6 +1018,8 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
 
             $form = Ninja_Forms::template( 'formtemplate-contactform.nff', array(), TRUE );
             Ninja_Forms()->form()->import_form( $form );
+
+            Ninja_Forms()->flush_rewrite_rules();
         }
 
         /**
