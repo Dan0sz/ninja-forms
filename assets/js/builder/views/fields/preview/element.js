@@ -24,6 +24,7 @@ define( [], function() {
 			if('liststate' == type) type = 'listselect';
 			if('listcountry' == type) type = 'listselect';
 			if('listmultiselect' == type) type = 'listselect';
+			if('save' == type) type = 'submit';
 
 			this.template = '#tmpl-nf-field-' + type;
 		},
@@ -153,6 +154,9 @@ define( [], function() {
 					var attributes = [];
 					if('listmultiselect' == this.type) {
 						attributes.push('multiple');
+
+						var multi_size = this.multi_size || '5';
+						attributes.push('size="' + multi_size + '"');
 					}
 
 					return attributes.join(' ');

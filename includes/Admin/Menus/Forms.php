@@ -552,6 +552,7 @@ final class NF_Admin_Menus_Forms extends NF_Abstracts_Menu
         foreach( $saved_fields as $saved_field ){
 
             $settings = $saved_field->get_settings();
+            unset( $settings['cellcid'] );
 
             $id     = $saved_field->get_id();
             $type   = $settings[ 'type' ];
