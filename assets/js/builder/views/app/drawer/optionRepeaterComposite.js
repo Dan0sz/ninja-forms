@@ -177,8 +177,10 @@ define( ['views/app/drawer/optionRepeaterOption', 'views/app/drawer/optionRepeat
 	    			columns = document.createElement( 'span' );
 	    			columns.appendChild( beforeColumns );
 
-					delete this.columns.value;
-					delete this.columns.calc;
+					if(!nfAdmin.devMode){
+						delete this.columns.value;
+						delete this.columns.calc;
+					}
 
 	    			_.each( this.columns, function( col ) {
 	    				var headerText, headerContainer;

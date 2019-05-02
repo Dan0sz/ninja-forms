@@ -121,8 +121,10 @@ define( ['views/app/drawer/optionRepeaterError'], function( ErrorView ) {
 			return {
 				getColumns: function() {
 					var columns = that.columns;
-					delete columns.value;
-					delete columns.calc;
+					if(!nfAdmin.devMode){
+						delete columns.value;
+						delete columns.calc;
+					}
 					return columns;
 				},
 				renderFieldSelect: function( dataID, value ){
