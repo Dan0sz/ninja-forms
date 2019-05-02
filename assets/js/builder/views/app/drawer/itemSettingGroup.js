@@ -20,15 +20,18 @@ define( ['views/app/drawer/itemSettingCollection'], function( itemSettingCollect
 
 			this.settings.show( new itemSettingCollectionView( { collection: this.model.get( 'settings' ), dataModel: this.dataModel } ) );
 
-			var visibleSettings = false;
-			this.$el.find('.nf-setting').each(function(index, setting) {
-				if( 'none' !== setting.style.display ){
-					visibleSettings = true;
-					return false; //Exit jQuery each loop.
+			// Only check if not for calculations.
+			if(0 == this.$el.find('.calculations').length){
+				var visibleSettings = false;
+				this.$el.find('.nf-setting').each(function(index, setting) {
+					if( 'none' !== setting.style.display ){
+						visibleSettings = true;
+						return false; //Exit jQuery each loop.
+					}
+				});
+				if(!visibleSettings) {
+					this.$el.hide();
 				}
-			});
-			if(!visibleSettings) {
-				this.$el.hide();
 			}
 
 			if ( this.model.get( 'display' ) ) {
