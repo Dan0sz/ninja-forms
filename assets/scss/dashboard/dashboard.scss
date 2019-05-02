@@ -355,3 +355,12 @@ Promotions
     }
   }
 }
+
+.promotion--wrapper {
+  > div {
+    a.nf-remove-promo-styling { 
+      padding: 0;
+      height: 83px;
+    }
+  }
+}

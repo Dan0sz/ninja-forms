@@ -457,9 +457,13 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
             add_action( 'plugins_loaded', array( self::$instance, 'plugins_loaded' ) );
 
             add_action( 'ninja_forms_available_actions', array( self::$instance, 'scrub_available_actions' ) );
-
+            
             add_action( 'init', array( self::$instance, 'init' ), 5 );
             add_action( 'admin_init', array( self::$instance, 'admin_init' ), 5 );
+
+            add_action( 'nf_weekly_promotion_update', array( self::$instance, 'nf_run_promotion_manager' ) );
+            add_action( 'activated_plugin', array( self::$instance, 'nf_bust_promotion_cache_on_plugin_activation' ), 10, 2 );
+                        
 
             // Checks php version and..
             if( PHP_VERSION < 5.6 ) {
@@ -476,6 +480,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         public function init()
         {
             do_action( 'nf_init', self::$instance );
+            
         }
 
         public function admin_init()
@@ -490,7 +495,12 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
 			// Remove already completed updates from our filtered list of required updates.
             add_filter( 'ninja_forms_required_updates', array( $this, 'remove_completed_updates' ), 99 );
             add_filter( 'ninja_forms_required_updates', array( $this, 'remove_bad_updates' ), 99 );
-            
+
+           // Sets up a weekly cron to run the promotion manager. 
+            if ( ! wp_next_scheduled( 'nf_weekly_promotion_update' ) ) {
+                wp_schedule_event( current_time( 'timestamp' ), 'nf-weekly', 'nf_weekly_promotion_update' );
+            }
+
 
 			// Get our list of required updates.
             $required_updates = Ninja_Forms()->config( 'RequiredUpdates' );
@@ -609,6 +619,69 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                 unset( $actions[ $key ] );
             }
             return $actions;
+        }
+
+        /**
+         * Call back function for the promo manager cron. 
+         * Grabs a fresh copy of the promotions and stores them in an option. 
+         * 
+         * @return void
+         */
+        public function nf_run_promotion_manager()
+        {
+            $promotion_manager = new NF_PromotionManager();
+            $promomotions = json_encode( $promotion_manager->get_promotions() );
+            update_option( 'nf_active_promotions', $promomotions, false );
+        }
+
+        /**
+         * Listens for plugin activation and runs check to see if any 
+         * promotions need to be added or removed.
+         *
+         * @return void 
+         */
+        public function nf_bust_promotion_cache_on_plugin_activation( $plugin, $network_activation ) 
+        {
+            $addons_with_promotions = $this->get_promotion_addons_lookup_table();
+            $plugin = explode( '/', $plugin ); 
+            $this->nf_maybe_bust_promotion_cache( $addons_with_promotions, $plugin[ 0 ] );
+        }
+
+        /**
+         * Build a look up table for the add-ons that have promotions.
+         * TODO: maybe come up with a better name for this class. 
+         * 
+         * @return array of promotions.  
+         */
+        public function get_promotion_addons_lookup_table()
+        {
+            // @TODO: Maybe use ninja_forms_addons_feed option to populate this later?
+            $nf_promotion_addons = array(
+                'ninja-forms-conditional-logic', // Account for development environments.
+                'ninja-forms-conditionals',
+                'ninja-forms-uploads', 
+                'ninja-forms-multi-part',
+                'ninja-forms-layout-styles', // Account for development environments.
+                'ninja-forms-style',
+                'ninja-shop',
+                'ninja-mail', // Account for Ninja Mail as legacy for SendWP.
+                'sendwp'
+            );
+            return $nf_promotion_addons;
+        }
+
+        /**
+         * Loops over our add-ons that have promotions and 
+         * runs the promotion manager class. 
+         * 
+         * @return void
+         */
+        public function nf_maybe_bust_promotion_cache( $promo_addons, $plugin_being_activated )
+        {
+            if ( in_array( $plugin_being_activated, $promo_addons ) ) {
+                $this->nf_run_promotion_manager();
+            }
+
         }
 
         public function admin_notices()
