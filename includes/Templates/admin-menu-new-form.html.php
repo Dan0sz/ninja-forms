@@ -241,7 +241,7 @@
     </a>
     <span id="nf-drawer-footer"></span>
     <# if(1 != nfAdmin.devMode){ #>
-    <div style="padding:20px;opacity:.5;text-align:center;">
+    <div style="margin-top:100px;padding:20px;opacity:.5;text-align:center;">
         For more technical features, <a href="<?php echo add_query_arg('page', 'nf-settings', admin_url('admin.php')); ?>#ninja_forms[builder_dev_mode]">enable Developer Mode</a>.
     </div>
     <# } #>
