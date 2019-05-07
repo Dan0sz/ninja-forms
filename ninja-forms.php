@@ -3,7 +3,7 @@
 Plugin Name: Ninja Forms
 Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
-Version: 3.4.10
+Version: 3.4.11
 Author: The WP Ninjas
 Author URI: http://ninjaforms.com
 Text Domain: ninja-forms
@@ -59,14 +59,14 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
          * @since 3.0
          */
 
-        const VERSION = '3.4.10';
+        const VERSION = '3.4.11';
         
         /**
          * @since 3.4.0
          */
         const DB_VERSION = '1.4';
 
-        const WP_MIN_VERSION = '4.9';
+        const WP_MIN_VERSION = '5.0';
 
         /**
          * @var Ninja_Forms
@@ -449,7 +449,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                     $migrations = new NF_Database_Migrations();
                     $migrations->migrate();
 
-                    NinjaForms()->flush_rewrite_rules();
+                    // Ninja_Forms()->flush_rewrite_rules();
                     // Enable "Dev Mode" for existing installations.
                     $settings = Ninja_Forms()->get_settings();
                     if( ! isset($settings['builder_dev_mode'])){
@@ -526,7 +526,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
             global $wpdb;
             $sql = "SELECT COUNT( `id` ) AS total FROM `{$wpdb->prefix}nf3_forms`;";
             $result = $wpdb->get_results( $sql, 'ARRAY_A' );
-            $threshold = 10; // Threshold percentage for our required updates.
+            $threshold = 30; // Threshold percentage for our required updates.
             if ( get_transient( 'ninja_forms_prevent_updates' ) ) {
                 update_option( 'ninja_forms_needs_updates', 0 );
             }
