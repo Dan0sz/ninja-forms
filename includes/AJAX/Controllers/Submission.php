@@ -535,11 +535,14 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
         if($this->_form_instance_id){
             $this->_data[ 'form_id' ] = $this->_form_instance_id;
 
-            $field_errors = array();
-            foreach($this->_errors['fields'] as $field_id => $error){
-                $field_errors[$field_id . '_' . $this->_instance_id] = $error;
+            // Maybe update IDs for field errors, if there are field errors.
+            if(isset($this->_errors['fields']) && $this->_errors['fields']){
+                $field_errors = array();
+                foreach($this->_errors['fields'] as $field_id => $error){
+                    $field_errors[$field_id . '_' . $this->_instance_id] = $error;
+                }
+                $this->_errors['fields'] = $field_errors;
             }
-            $this->_errors['fields'] = $field_errors;
         }
 
         // Set a content type of JSON for the purpose of previnting XSS attacks.

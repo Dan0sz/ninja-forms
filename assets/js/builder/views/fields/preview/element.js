@@ -19,6 +19,8 @@ define( [], function() {
 			if('spam' == type) type = 'input';
 			if('date' == type) type = 'input';
 			if('confirm' == type) type = 'input';
+			if('password' == type) type = 'input';
+			if('passwordconfirm' == type) type = 'input';
 			if('quantity' == type) type = 'number';
 			if('terms' == type) type = 'listcheckbox';
 			if('liststate' == type) type = 'listselect';
