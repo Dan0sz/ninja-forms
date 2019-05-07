@@ -450,6 +450,11 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                     $migrations->migrate();
 
                     self::$instance->flush_rewrite_rules();
+                    // Enable "Dev Mode" for existing installations.
+                    $settings = Ninja_Forms()->get_settings();
+                    if( ! isset($settings['builder_dev_mode'])){
+                        Ninja_Forms()->update_setting('builder_dev_mode', 1);
+                    } 
                 }
             }
 
@@ -1020,6 +1025,8 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
             Ninja_Forms()->form()->import_form( $form );
 
             Ninja_Forms()->flush_rewrite_rules();
+            // Disable "Dev Mode" for new installation.
+            Ninja_Forms()->update_setting('builder_dev_mode', 0);
         }
 
         /**
