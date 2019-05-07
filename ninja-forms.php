@@ -449,7 +449,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                     $migrations = new NF_Database_Migrations();
                     $migrations->migrate();
 
-                    self::$instance->flush_rewrite_rules();
+                    NinjaForms()->flush_rewrite_rules();
                     // Enable "Dev Mode" for existing installations.
                     $settings = Ninja_Forms()->get_settings();
                     if( ! isset($settings['builder_dev_mode'])){

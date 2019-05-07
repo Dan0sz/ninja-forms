@@ -360,9 +360,9 @@ final class NF_Display_Render
             /* Render Instance Fix */
             if(self::$render_instance_count) {
                 $form_id .= '_' . self::$render_instance_count;
-                array_walk($fields, function(&$field) {
-                    $field['id'] .= '_' . self::$render_instance_count;
-                });
+                foreach( $fields as $id => $field ) {
+                    $fields[$id]['id'] .= '_' . self::$render_instance_count;
+                }
             }
             self::$render_instance_count++;
             /* END Render Instance Fix */

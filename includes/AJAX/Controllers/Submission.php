@@ -100,7 +100,7 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
         if(! $this->is_preview()){
             $form_fields = Ninja_Forms()->form($this->_form_id)->get_fields();
             foreach ($form_fields as $id => $field) {
-                $this->_form_data['fields'][$id]['key'] = $field->get_settings()['key'];
+                $this->_form_data['fields'][$id]['key'] = $field->get_setting('key');
             }
         }
 
