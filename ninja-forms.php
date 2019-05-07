@@ -331,6 +331,11 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                 self::$instance->preview = new NF_Display_Preview();
 
                 /*
+                 * Public Form Link
+                 */
+                add_filter('template_include', array(self::$instance, 'maybe_load_public_form'));
+
+                /*
                  * Shortcodes
                  */
                 self::$instance->shortcodes = new NF_Display_Shortcodes();
@@ -444,6 +449,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                     $migrations = new NF_Database_Migrations();
                     $migrations->migrate();
 
+                    self::$instance->flush_rewrite_rules();
                     // Enable "Dev Mode" for existing installations.
                     $settings = Ninja_Forms()->get_settings();
                     if( ! isset($settings['builder_dev_mode'])){
@@ -480,7 +486,20 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         public function init()
         {
             do_action( 'nf_init', self::$instance );
-            
+
+            $this->register_rewrite_rules();
+        }
+
+        public function flush_rewrite_rules()
+        {
+            $this->register_rewrite_rules();
+            flush_rewrite_rules();
+        }
+
+        public function register_rewrite_rules()
+        {
+            add_rewrite_tag('%nf_public_link%', '([a-zA-Z0-9]+)');
+            add_rewrite_rule('^ninja-forms/([a-zA-Z0-9]+)/?', 'index.php?nf_public_link=$matches[1]', 'top');
         }
 
         public function admin_init()
@@ -526,6 +545,19 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
                 // Record that there are no required updates.
                 update_option( 'ninja_forms_needs_updates', 0 );
             }
+        }
+
+        function maybe_load_public_form($template) {
+            if($public_link_key = sanitize_text_field(get_query_var('nf_public_link'))){
+                // @TODO Move this functionality behind a boundry.
+                global $wpdb;
+                $query = $wpdb->prepare( "SELECT `parent_id` FROM {$wpdb->prefix}nf3_form_meta WHERE `key` = 'public_link_key' AND `value` = %s", $public_link_key );
+                $results = $wpdb->get_col($query);
+                $form_id = reset($results);
+
+                new NF_Display_PagePublicLink($form_id);
+            }
+            return $template;
         }
 
 	    /**
@@ -980,6 +1012,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
          * Activation
          */
         public function activation() {
+
             $migrations = new NF_Database_Migrations();
             $migrations->migrate();
 
@@ -991,6 +1024,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
             $form = Ninja_Forms::template( 'formtemplate-contactform.nff', array(), TRUE );
             Ninja_Forms()->form()->import_form( $form );
 
+            Ninja_Forms()->flush_rewrite_rules();
             // Disable "Dev Mode" for new installation.
             Ninja_Forms()->update_setting('builder_dev_mode', 0);
         }

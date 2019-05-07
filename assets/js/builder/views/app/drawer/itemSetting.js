@@ -465,7 +465,7 @@ define( ['views/app/drawer/mergeTagsContent', 'views/app/drawer/settingError'], 
 				    }
 
 				    return minMaxHelperStr;
-			    }
+				},
 			}
 		},
 
