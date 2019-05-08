@@ -131,6 +131,24 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 
 == Changelog ==
 
+= 3.4.11 (7 May 2019) =
+
+*Bugs:*
+
+* Multiple instances of the same form can now be loaded on a page.
+* Resolved an issue that sometimes prevented favorite fields from being added to a form.
+* Realistic preview of multiselect fields will now render more accurately in the builder.
+* Resolved an issue that sometimes caused required updates to miscommunicate completion progress.
+* Field keys should once more be accessible in submission filters.
+* Querystring merge tags should no longer display their tags when the querystring is not present.
+* Builder help texts should no longer contain unrendered HTML elements.
+
+*Changes:*
+
+* Added currency support for the Malaysian Ringgit.
+* Added realistic field support for the save button and password field in the form builder.
+* Some settings have been registered as developer options, which will be disabled by default to avoid settings clutter.
+
 = 3.4.10 (15 April 2019) =
 
 *Bugs:*
