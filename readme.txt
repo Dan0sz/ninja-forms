@@ -128,6 +128,7 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 * Added currency support for the Malaysian Ringgit.
 * Added realistic field support for the save button and password field in the form builder.
 * Some settings have been registered as developer options, which will be disabled by default to avoid settings clutter.
+* Public links are now available for Ninja Forms! Found next to the publish button, public links provide form access to anyone with the link. Just copy and paste the unique URL and anyone can see and use your form.
 
 == Changelog ==
 
@@ -148,6 +149,7 @@ For help and video tutorials, please visit our website: [Ninja Forms Documentati
 * Added currency support for the Malaysian Ringgit.
 * Added realistic field support for the save button and password field in the form builder.
 * Some settings have been registered as developer options, which will be disabled by default to avoid settings clutter.
+* Public links are now available for Ninja Forms! Found next to the publish button, public links provide form access to anyone with the link. Just copy and paste the unique URL and anyone can see and use your form.
 
 = 3.4.10 (15 April 2019) =
 
