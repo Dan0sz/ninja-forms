@@ -1023,6 +1023,10 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
             Ninja_Forms()->form()->import_form( $form );
 
             Ninja_Forms()->flush_rewrite_rules();
+
+            // Enable "Light" Opinionated Styles for new installtion.
+            Ninja_Forms()->update_setting('opinionated_styles', 'light');
+
             // Disable "Dev Mode" for new installation.
             Ninja_Forms()->update_setting('builder_dev_mode', 0);
         }
