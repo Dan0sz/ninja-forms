@@ -43,18 +43,14 @@ define( [ 'views/app/drawer/mergeTag' ], function( mergeTagView ) {
                 var fieldCollection = nfRadio.channel( 'fields' ).request( 'get:collection' );
                 // Stores the keys of product and quantity fields.
                 var fieldsToRemove = [];
-                // Grab our product fields.
-                var productFields = fieldCollection.where( { 'type': 'product' } );
-                // Grab our quantity fields.
-                var quantityFields = fieldCollection.where( { 'type': 'quantity' } );
-                // Loop over product fields, adding their key to our tracker.
-                _.each( productFields, function( field ) {
-                    fieldsToRemove.push( '{field:' + field.get( 'key' ) + '}' );
-                } );
-                // Loop over quantity fields, adding their key to our tracker.
-                _.each( quantityFields, function( field ) {
-                    fieldsToRemove.push( '{field:' + field.get( 'key' ) + '}' );
-                } );
+                // Declare blacklisted field types.
+                var blacklist = ['product', 'quantity', 'total', 'shipping'];
+                // Remove them from the merge tag selection box.
+                _.each( fieldCollection.models, function( model ) {
+                    if ( -1 != blacklist.indexOf( model.get('type') ) ) {
+                        fieldsToRemove.push( '{field:' + model.get( 'key' ) + '}' );
+                    }
+                });
 
                 /**
                  * Filters our merge tags.
