@@ -254,6 +254,13 @@ define( ['views/app/drawer/mergeTagsContent', 'views/app/drawer/settingError'], 
 						if('custom_name_attribute' == this.name) return 'style="display:none;"';
 						if('personally_identifiable' == this.name) return 'style="display:none;"';
 						
+						// "administration" settings
+						if('key' == this.name) return 'style="display:none;"';
+						if('admin_label' == this.name) return 'style="display:none;"';
+						if('num_sort' == this.name) return 'style="display:none;"';
+						if('user_state' == this.name) return 'style="display:none;"';
+
+						
 						if('checkbox' == that.dataModel.get('type')){
 							if('checked_value' == this.name) return 'style="display:none;"';
 							if('unchecked_value' == this.name) return 'style="display:none;"';
