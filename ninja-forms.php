@@ -486,6 +486,7 @@ if( get_option( 'ninja_forms_load_deprecated', FALSE ) && ! ( isset( $_POST[ 'nf
         public function init()
         {
             do_action( 'nf_init', self::$instance );
+            $this->register_rewrite_rules();
         }
 
         public function flush_rewrite_rules()
