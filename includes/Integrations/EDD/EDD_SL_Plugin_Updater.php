@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Allows plugins to use their own update API.
  *
  * @author Easy Digital Downloads
- * @version 1.6.19
+ * @version 1.6.18
  */
 class EDD_SL_Plugin_Updater {
 
@@ -45,15 +45,6 @@ class EDD_SL_Plugin_Updater {
 		$this->cache_key   = 'edd_sl_' . md5( serialize( $this->slug . $this->api_data['license'] . $this->beta ) );
 
 		$edd_plugin_data[ $this->slug ] = $this->api_data;
-
-		/**
-		 * Fires after the $edd_plugin_data is setup.
-		 *
-		 * @since x.x.x
-		 *
-		 * @param array $edd_plugin_data Array of EDD SL plugin data.
-		 */
-		do_action( 'post_edd_sl_plugin_updater_setup', $edd_plugin_data );
 
 		// Set up hooks.
 		$this->init();
@@ -183,14 +174,6 @@ class EDD_SL_Plugin_Updater {
 
 				if ( isset( $version_info->icons ) && ! is_array( $version_info->icons ) ) {
 					$version_info->icons = $this->convert_object_to_array( $version_info->icons );
-				}
-
-				if ( isset( $version_info->icons ) && ! is_array( $version_info->icons ) ) {
-					$version_info->icons = $this->convert_object_to_array( $version_info->icons );
-				}
-
-				if ( isset( $version_info->contributors ) && ! is_array( $version_info->contributors ) ) {
-					$version_info->contributors = $this->convert_object_to_array( $version_info->contributors );
 				}
 
 				$this->set_version_info_cache( $version_info );
@@ -327,11 +310,6 @@ class EDD_SL_Plugin_Updater {
 			$_data->icons = $this->convert_object_to_array( $_data->icons );
 		}
 
-		// Convert contributors into an associative array, since we're getting an object, but Core expects an array.
-		if ( isset( $_data->contributors ) && ! is_array( $_data->contributors ) ) {
-			$_data->contributors = $this->convert_object_to_array( $_data->contributors );
-		}
-
 		if( ! isset( $_data->plugin ) ) {
 			$_data->plugin = $this->name;
 		}
@@ -354,7 +332,7 @@ class EDD_SL_Plugin_Updater {
 	private function convert_object_to_array( $data ) {
 		$new_data = array();
 		foreach ( $data as $key => $value ) {
-			$new_data[ $key ] = is_object( $value ) ? $this->convert_object_to_array( $value ) : $value;
+			$new_data[ $key ] = $value;
 		}
 
 		return $new_data;
