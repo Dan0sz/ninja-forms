@@ -555,7 +555,8 @@ class NF_AJAX_Controllers_Submission extends NF_Abstracts_Controller
     protected function _respond( $data = array() )
     {
         // Restore form instance ID.
-        if($this->_form_instance_id){
+        if(property_exists($this, '_form_instance_id') 
+            && $this->_form_instance_id){
             $this->_data[ 'form_id' ] = $this->_form_instance_id;
 
             // Maybe update IDs for field errors, if there are field errors.
