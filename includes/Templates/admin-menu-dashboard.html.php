@@ -279,7 +279,7 @@
     Ninja_Forms()->menus[ 'add-ons']->display();
     
     ?>
-
+</script>
 
 <!-- Section: Required Updates -->
 <script id="tmpl-nf-requiredUpdates" type="text/template">
