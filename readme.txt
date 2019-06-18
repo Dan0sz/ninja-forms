@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, krmoorho
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 5.0
 Tested up to: 5.2
-Stable tag: 3.4.13
+Stable tag: 3.4.14
 License: GPLv2 or later
 
 Ninja Forms is an easy to use drag and drop form builder with an intuitive UI that can be used to create contact forms, email subscription forms, lead generation forms, WordPress registration and login forms, order forms, payment and donation forms, and much more!
@@ -137,21 +137,45 @@ This section describes how to install the plugin and get it working.
 
 == Upgrade Notice ==
 
-= 3.4.13 (17 May 2019) =
+= 3.4.14 (18 June 2019) =
 
 *Bugs:*
 
-* Updated our form load process to better account for reported excessive page load times.
-* Resolved an issue that was causing various add-ons to behave strangely when there were multiple forms on a single page.
-* Restored the display of some action settings that were being improperly hidden in the form builder. (e.g. Stripe metadata and Update Profile custom meta.)
-* Resolved an issue that sometimes caused submission to freeze when a required field was left empty.
-* Forms should no longer fail to display when a total field is referenced in a calculation.
+* Resolved an issue that sometimes caused required updates to fail due to allowed server memory.
+* Public form link should now be more reliable without needing to update site permalinks.
+* Corrected a typo in the shortcode output of the Display Your Form settings.
+* Dailed back our add-on updater script. It was checking for updates too often.
+* Resolved an issue that was sometimes causing form submission to hang on processing, even though it had finished submitting data.
+* Corrected a typo in the help text for auto-adding a submit button.
+* Dynamic options in lists should now work properly everywhere, not just on form display.
+* Fixed a couple of broken links on our Get Help page.
+* The public link setting should no longer appear on the dashboard for forms where it is not enabled.
 
 *Changes:*
 
-* "Light" opinionated styles are now enabled by default on new Ninja Forms installations.
+* Updated our Details page in the WordPress repo.
+* Date fields can no longer be added to calculations.
 
 == Changelog ==
+
+= 3.4.14 (18 June 2019) =
+
+*Bugs:*
+
+* Resolved an issue that sometimes caused required updates to fail due to allowed server memory.
+* Public form link should now be more reliable without needing to update site permalinks.
+* Corrected a typo in the shortcode output of the Display Your Form settings.
+* Dailed back our add-on updater script. It was checking for updates too often.
+* Resolved an issue that was sometimes causing form submission to hang on processing, even though it had finished submitting data.
+* Corrected a typo in the help text for auto-adding a submit button.
+* Dynamic options in lists should now work properly everywhere, not just on form display.
+* Fixed a couple of broken links on our Get Help page.
+* The public link setting should no longer appear on the dashboard for forms where it is not enabled.
+
+*Changes:*
+
+* Updated our Details page in the WordPress repo.
+* Date fields can no longer be added to calculations.
 
 = 3.4.13 (17 May 2019) =
 
