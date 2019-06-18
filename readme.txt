@@ -3,7 +3,7 @@ Contributors: wpninjasllc, kstover, jameslaws, kbjohnson90, klhall1987, krmoorho
 Tags: form, forms, contact form, custom form, form builder, form creator, form manager, form creation, contact forms, custom forms, forms builder, forms creator, forms manager, forms creation, form administration,
 Requires at least: 5.0
 Tested up to: 5.2
-Stable tag: 3.4.14
+Stable tag: 3.4.15
 License: GPLv2 or later
 
 Ninja Forms is an easy to use drag and drop form builder with an intuitive UI that can be used to create contact forms, email subscription forms, lead generation forms, WordPress registration and login forms, order forms, payment and donation forms, and much more!
@@ -137,7 +137,7 @@ This section describes how to install the plugin and get it working.
 
 == Upgrade Notice ==
 
-= 3.4.14 (18 June 2019) =
+= 3.4.15 (18 June 2019) =
 
 *Bugs:*
 
@@ -150,6 +150,7 @@ This section describes how to install the plugin and get it working.
 * Dynamic options in lists should now work properly everywhere, not just on form display.
 * Fixed a couple of broken links on our Get Help page.
 * The public link setting should no longer appear on the dashboard for forms where it is not enabled.
+* Resolved an issue that sometimes caused the form dashboard to not display.
 
 *Changes:*
 
@@ -157,6 +158,12 @@ This section describes how to install the plugin and get it working.
 * Date fields can no longer be added to calculations.
 
 == Changelog ==
+
+= 3.4.15 (18 June 2019) =
+
+*Bugs:*
+
+* Resolved an issue that sometimes caused the form dashboard to not display.
 
 = 3.4.14 (18 June 2019) =
 
