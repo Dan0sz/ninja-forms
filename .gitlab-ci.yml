@@ -1,8 +1,29 @@
 stages:
-  - testing
+  - unit
+  - acceptance
+
+# Cache libraries in between jobs
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+  - vendor/
+
+codeception:
+  stage: acceptance
+  tags:
+    - juice
+  script:
+     - "docker stop $(docker ps -a -q)"
+     - "docker-compose build"
+     - "docker-compose run --rm codeception run -vvv --html --fail-fast"
+  artifacts:
+    when: on_failure
+    paths:
+      - tests/acceptance-tests/_output/
+    expire_in: 1 week
 
 phpunit:
-  stage: testing
+  stage: unit
   image: wordpress:4.9.8-php7.1
   script:
   - apt-get update -yqq
