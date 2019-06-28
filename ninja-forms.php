@@ -5,7 +5,7 @@ Plugin URI: http://ninjaforms.com/
 Description: Ninja Forms is a webform builder with unparalleled ease of use and features.
 Version: 3.4.16
 Author: The WP Ninjas
-Author URI: http://ninjaforms.com
+Author URI: http://ninjaforms.com/?utm_source=ninja-forms-plugin&utm_medium=wpdashboard-plugins-page&utm_campaign=by-the-wp-ninjas
 Text Domain: ninja-forms
 Domain Path: /lang/
 
