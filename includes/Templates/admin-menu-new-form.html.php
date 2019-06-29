@@ -35,6 +35,17 @@
     <div id="merge-tags-box"></div>
 </script>
 
+<script id="tmpl-nf-advanced-main-content" type="text/template">
+    <div>
+        <div class="child-view-container"></div>
+        <# if(1 != nfAdmin.devMode){ #>
+            <div style="clear:both;padding-top:100px;padding:20px;opacity:.5;text-align:center;">
+                For more technical features, <a href="<?php echo add_query_arg('page', 'nf-settings', admin_url('admin.php')); ?>#ninja_forms[builder_dev_mode]">enable Developer Mode</a>.
+            </div>
+        <# } #>
+    </div>
+</script>
+
 <!-- MERGE TAGS BOX TEMPLATES -->
 <script id="tmpl-nf-merge-tag-box" type="text/template">
     <div class="merge-tag-filter"></div>
