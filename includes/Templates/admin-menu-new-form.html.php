@@ -15,7 +15,7 @@
         if( ! function_exists( 'NF_Layouts' ) && ! $disable_admin_notices ) {
             $u_id = get_option( 'nf_aff', false );
             if ( !$u_id ) $u_id = apply_filters( 'ninja_forms_affiliate_id', false );
-            $link = 'https://ninjaforms.com/extensions/layout-styles/?utm_medium=plugin&utm_source=plugin-builder&utm_campaign=Ninja+Forms+Builder&utm_content=Layout+and+Styles';
+            $link = 'https://ninjaforms.com/extensions/layout-styles/?utm_source=Ninja+Forms+Plugin&utm_medium=Form+Builder&utm_campaign=Builder+Layout+Styles+Comment+Bubble';
             if ( $u_id ) {
                 $link = 'http://www.shareasale.com/r.cfm?u=' . $u_id . '&b=812237&m=63061&afftrack=&urllink=' . $link;
             }
