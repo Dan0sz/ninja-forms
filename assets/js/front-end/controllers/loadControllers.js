@@ -29,6 +29,7 @@ define(
 		'controllers/fieldRecaptcha',
 		'controllers/fieldHTML',
 		'controllers/helpText',
+		'controllers/fieldTextbox',
 		'controllers/fieldTextareaRTE',
 		'controllers/fieldStarRating',
 		'controllers/fieldTerms',
@@ -69,6 +70,7 @@ define(
 		FieldRecaptcha,
 		FieldHTML,
 		HelpText,
+		FieldTextbox,
 		FieldTextareaRTE,
 		FieldStarRating,
 		FieldTerms,
@@ -103,6 +105,7 @@ define(
 				new FieldRecaptcha();
 				new FieldHTML();
 				new HelpText();
+				new FieldTextbox();
 				new FieldTextareaRTE();
 				new FieldStarRating();
 				new FieldTerms();
