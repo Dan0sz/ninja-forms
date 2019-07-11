@@ -1,10 +1,11 @@
 <?php
 $I = new AcceptanceTester( $scenario );
 
+$I->wantTo( 'add field to existing form' );
 // Login to wp-admin
 $I->loginAsAdmin();
+$I->nfHideUpdates( $I );
 
-$I->wantTo( 'add field to existing form' );
 // Make sure we're on our contact form.
 $I->amOnPage( '/wp-admin/admin.php?page=ninja-forms&form_id=1' );
 // Make sure we're on the fields domain.

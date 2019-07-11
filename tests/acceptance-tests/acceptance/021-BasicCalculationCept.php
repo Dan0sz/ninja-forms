@@ -4,6 +4,7 @@ $I = new AcceptanceTester( $scenario );
 $I->wantTo( 'test and verify a simple calculation' );
 // Login to wp-admin
 $I->loginAsAdmin();
+$I->nfHideUpdates( $I );
 
 $I->amOnPage( '/wp-admin/admin.php?page=ninja-forms&form_id=new' );
 

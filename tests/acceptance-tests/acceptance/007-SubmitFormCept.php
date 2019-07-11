@@ -1,10 +1,10 @@
 <?php
 $I = new AcceptanceTester( $scenario );
 
+$I->wantTo( 'confirm that form submits properly' );
 // Login to wp-admin
 $I->loginAsAdmin();
 
-$I->wantTo( 'confirm that form submits properly' );
 $I->amOnPage( '/?nf_preview_form=1' );
 $I->waitForElementVisible( '.nf-form-content', 30 );
 

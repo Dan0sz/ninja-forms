@@ -1,10 +1,11 @@
 <?php
 $I = new AcceptanceTester( $scenario );
 
+$I->wantTo( 'confirm that submissions can be limited' );
 // Login to wp-admin
 $I->loginAsAdmin();
+$I->nfHideUpdates( $I );
 
-$I->wantTo( 'edit form title' );
 $I->amOnPage( '/wp-admin/admin.php?page=ninja-forms&form_id=1' );
 $I->waitForText( 'Advanced' );
 $I->click( 'Advanced' );

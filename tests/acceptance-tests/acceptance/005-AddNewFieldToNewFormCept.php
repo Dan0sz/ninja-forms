@@ -5,6 +5,7 @@ $I->wantTo( 'check that the builder drawer opens and fields are added' );
 
 // Login to wp-admin
 $I->loginAsAdmin();
+$I->nfHideUpdates( $I );
 
 $I->amOnPage( '/wp-admin/admin.php?page=ninja-forms&form_id=new' );
 $I->waitForText( 'Single Checkbox' );

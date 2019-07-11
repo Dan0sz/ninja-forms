@@ -5,6 +5,7 @@ $I->wantTo( 'test and verify a currency masked field in a calculation' );
 
 // Login to wp-admin
 $I->loginAsAdmin();
+$I->nfHideUpdates( $I );
 
 /**
  * Create a new form.
