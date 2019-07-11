@@ -4,6 +4,7 @@ $I = new AcceptanceTester( $scenario );
 $I->wantTo( 'create a new form, submit it, and verify the submission' );
 // Login to wp-admin
 $I->loginAsAdmin();
+$I->nfHideUpdates( $I );
 
 $I->amOnPage( '/wp-admin/admin.php?page=ninja-forms&form_id=new' );
 

@@ -9,6 +9,8 @@ $I->loginAsAdmin();
 $I->amOnPage( '/wp-admin' );
 $I->see( 'Dashboard' );
 
+$I->nfHideUpdates( $I );
+
 $I->amOnPage( '/wp-admin/admin.php?page=ninja-forms&form_id=new' );
 $I->dontSeeInSource( '<b>Notice</b>:' );
 $I->dontSeeInSource( '<b>Warning</b>:' );
