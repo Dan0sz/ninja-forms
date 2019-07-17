@@ -37,7 +37,7 @@ class NF_Fields_ListCheckbox extends NF_Abstracts_List
         $settings = $field->get_settings();
         $options = $field->get_setting( 'options' );
         $options = apply_filters( 'ninja_forms_render_options', $options, $settings );
-        $options = apply_filters( 'ninja_forms_render_options_' . $field->get_type(), $options, $settings );
+        $options = apply_filters( 'ninja_forms_render_options_' . $this->_type, $options, $settings );
 
         $list = '';
         foreach( $options as $option ){
