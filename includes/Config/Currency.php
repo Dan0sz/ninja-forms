@@ -96,5 +96,9 @@ return apply_filters( 'ninja_forms_currency', array(
 	'INR' => array(
 		'label' => __( 'Indian Rupee', 'ninja-forms' ),
 		'value' => 'INR'
-	),
+    ),
+    'RUB' => array(
+        'label' => __( 'Russian Ruble', 'ninja-forms' ),
+        'value' => 'RUB'
+    )
 ));
