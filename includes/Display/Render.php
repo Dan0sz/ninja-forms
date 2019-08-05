@@ -682,14 +682,6 @@ final class NF_Display_Render
             }
         }
 
-        ?>
-        <script>
-            var post_max_size = '<?php echo WPN_Helper::string_to_bytes( ini_get('post_max_size') ); ?>';
-            var upload_max_filesize = '<?php echo WPN_Helper::string_to_bytes( ini_get( 'upload_max_filesize' ) ); ?>';
-            var wp_memory_limit = '<?php echo WPN_Helper::string_to_bytes( WP_MEMORY_LIMIT ); ?>';
-        </script>
-        <?php
-
         // Action to Output Custom Templates
         do_action( 'ninja_forms_output_templates' );
     }
