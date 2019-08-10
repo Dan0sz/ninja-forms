@@ -83,6 +83,9 @@ final class NF_Display_Render
             unset( $settings[ $name ] );
         }
 
+        // Remove the embed_form setting to avoid pagebuilder conflicts.
+        $settings[ 'embed_form' ] = '';
+
         $settings = array_merge( Ninja_Forms::config( 'i18nFrontEnd' ), $settings );
         $settings = apply_filters( 'ninja_forms_display_form_settings', $settings, $form_id );
 
@@ -409,6 +412,8 @@ final class NF_Display_Render
         $form[ 'settings' ] = array_merge( Ninja_Forms::config( 'i18nFrontEnd' ), $form[ 'settings' ] );
         $form[ 'settings' ] = apply_filters( 'ninja_forms_display_form_settings', $form[ 'settings' ], $form_id );
 
+        // Remove the embed_form setting to avoid pagebuilder conflicts.
+        $form[ 'settings' ][ 'embed_form' ] = '';
 
         $form[ 'settings' ][ 'is_preview' ] = TRUE;
 
