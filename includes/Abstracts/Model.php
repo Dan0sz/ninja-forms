@@ -855,7 +855,7 @@ class NF_Abstracts_Model
 
         $join_statement = implode( ' ', $join_statement );
 
-        $where_statement = implode( ' AND ', $where_statement );
+		$where_statement = 'AND ' . implode( ' AND ', $where_statement );
 
         // TODO: Breaks SQL. Needs more testing.
         // if( $where_statement ) $where_statement = "AND " . $where_statement;
